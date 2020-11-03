@@ -1,3 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; margin: 0; }
+html, body { height: 100%; }
+body {
+    font-size: 24px;
+    -webkit-font-smoothing: none;
+    font-family: "pokemon-font", monospace;
+  }
+  @font-face {
+    font-family: 'pokemon-font';
+      src: url('../src/app/fonts/pokemon-font.eot'); /* IE9 Compat Modes */
+      src: url('../src/app/fonts/pokemon-font.woff2') format('woff2'), /* Super Modern Browsers */
+          url('../src/app/fonts/pokemon-font.woff') format('woff'), /* Pretty Modern Browsers */
+          url('../src/app/fonts/pokemon-font.ttf')  format('truetype'), /* Safari, Android, iOS */
+          url('../src/app/fonts/pokemon-font.otf') format('otf'); /* Legacy iOS */
+      font-weight: 400;
+      font-style: normal;
+  }
