@@ -28,7 +28,7 @@ PokemonTCG.Card.where(params)
 
 PokemonTCG.Card.all()
   .then(cards => {
-    // do stuff with the cards
+    console.log();
   })
   .catch(error => {
     // do something with the error
