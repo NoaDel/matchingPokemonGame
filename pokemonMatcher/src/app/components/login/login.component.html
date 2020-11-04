@@ -1,27 +1,28 @@
-<div>
-  <h1>Pokémon Matcher</h1>
-</div>
-
+<body>
   <div>
-    <form>
-      <label for="email">Email:</label>
-      <input type="email" name="email" placeholder="Ex. Ashketchum@gmail.com">
+    <p style="font-size: 32px;">Pokémon Matcher!</p>
+  </div>
+
+    <div>
+      <form>
+        <label for="email">Email:</label>
+        <input type="email" name="email" #email placeholder="Ex. Ashketchum@gmail.com">
+        <br>
+        <label for="password">Password:</label>
+
+        <input type="password" name="password" #password placeholder="Password">
+        <button (click)="onSignIn(email.value, password.value)">Login</button>
+      </form>
       <br>
-      <label for="password">Password:</label>
-
-      <input type="password" name="password" placeholder="Password">
-      <button type="submit">Login</button>
-    </form>
-    <br>
-    <button type="submit">Login With Google --soon</button>
-  </div>
+      <button (click)="handleGoogleLogin()">Login With Google</button>
+    </div>
 
 
-  <div>
-    <h3>Don't have an account?
-      <a routerLink="/signup" routerLinkActive="active">Sign up here!</a>
-    </h3>
-  </div>
-
+    <div>
+      <h3>Don't have an account?
+        <a routerLink="/sign-up" routerLinkActive="active">Sign up here!</a>
+      </h3>
+    </div>
+</body>
 
 
