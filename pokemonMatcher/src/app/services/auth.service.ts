@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from  "@angular/router";
 import { auth } from  'firebase/app';
 import { AngularFireAuth } from  "@angular/fire/auth";
-import { User } from  'firebase';
-
+import { AngularFirestore } from '@angular/fire/firestore';
 
 
 
@@ -11,13 +10,21 @@ import { User } from  'firebase';
   providedIn: 'root'
 })
 export class AuthService {
-  user: User;
-
+newUser: any;
 
   constructor(
-    public firebaseAuth: AngularFireAuth,
-    public  router:  Router
-  ) { }
+    private firebaseAuth: AngularFireAuth,
+    private db: AngularFirestore,
+    private router:  Router
+  ) {
+
+
+  }
+
+  getUserState(){
+    return this.firebaseAuth.authState
+  }
+
 
   googleLogin(){
     return new Promise((resolve, reject) =>{
@@ -37,23 +44,44 @@ export class AuthService {
 
 
 
-  register(email, password){
-    return new Promise<any>((resolve, reject) => {
-      auth().createUserWithEmailAndPassword(email, password)
-      .then(res => {
-        resolve(this.router.navigate(['/login']));
-      }, err => reject(err))
+  register(user){
+      this.firebaseAuth.createUserWithEmailAndPassword(user.email, user.password)
+      .then(userCredentials => {
+        this.newUser = user
+        console.log(userCredentials)
+        userCredentials.user.updateProfile({
+          displayName: user.username
+        })
+        this.insertUserData(userCredentials)
+        .then(() =>{
+          this.router.navigate(['/lobby']);
 
+        })
+    })
+    .catch( error => {
+      console.log(error)
+    })
+  }
+
+  insertUserData(userCredentials: firebase.auth.UserCredential){
+    return this.db.doc(`Users/${userCredentials.user.uid}`).set({
+      email: this.newUser.email,
+      username: this.newUser.username,
+      password: this.newUser.password
     })
   }
 
   login(email, password){
-    return new Promise<any>((resolve, reject) => {
-      auth().signInWithEmailAndPassword(email, password)
-      .then(res => {
-        resolve(this.router.navigate(['lobby']));
-      }, err => reject(err))
-    })
+
+      this.firebaseAuth.signInWithEmailAndPassword(email, password)
+      .catch(err =>{
+        console.log(err)
+      }).then(userCredentials =>{
+        if(userCredentials) {
+          this.router.navigate(['/lobby']);
+
+        }
+      })
   }
 
     logout(){

@@ -1,2 +1,4 @@
 <p>lobby works!</p>
+<p *ngIf="user">Logged in as: {{user.displayName}} Email: {{user.email}}</p>
 <button (click)="handleLogout()">logout</button>
+

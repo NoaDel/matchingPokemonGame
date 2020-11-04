@@ -18,6 +18,7 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BadPageComponent } from './components/bad-page/bad-page.component';
 
 
 
@@ -28,7 +29,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     UserProfileComponent,
     LobbyComponent,
     GameRoomComponent,
-    SignUpComponent
+    SignUpComponent,
+    BadPageComponent
   ],
   imports: [
     BrowserModule,
