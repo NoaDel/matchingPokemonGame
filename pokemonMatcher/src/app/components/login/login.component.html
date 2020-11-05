@@ -5,8 +5,10 @@
 
     <div>
       <form #loginForm="ngForm" (ngSubmit)="onSignIn(loginForm)" >
+
         <label for="email">Email:</label>
         <input ngModel type="email"  name="email" #email="ngModel" placeholder="Ex. Ashketchum@gmail.com">
+
         <br>
         <label for="password">Password:</label>
 

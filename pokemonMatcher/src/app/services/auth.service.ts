@@ -3,6 +3,10 @@ import { Router } from  "@angular/router";
 import { auth } from  'firebase/app';
 import { AngularFireAuth } from  "@angular/fire/auth";
 import { AngularFirestore } from '@angular/fire/firestore';
+import {MatDialog} from '@angular/material/dialog';
+import {ModalErrComponent} from '../components/modal-err/modal-err.component'
+
+
 
 
 
@@ -11,15 +15,23 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class AuthService {
 newUser: any;
+err: ''
 
   constructor(
     private firebaseAuth: AngularFireAuth,
     private db: AngularFirestore,
-    private router:  Router
+    private router:  Router,
+    public dialog: MatDialog
   ) {
 
 
   }
+
+  errorMessage(err) {
+    this.dialog.open(ModalErrComponent, err);
+    console.log(err)
+  }
+
 
   getUserState(){
     return this.firebaseAuth.authState
@@ -59,6 +71,7 @@ newUser: any;
         })
     })
     .catch( error => {
+      alert(error)
       console.log(error)
     })
   }
@@ -75,7 +88,9 @@ newUser: any;
 
       this.firebaseAuth.signInWithEmailAndPassword(email, password)
       .catch(err =>{
-        console.log(err)
+        this.err = err
+        this.errorMessage(this.err)
+
       }).then(userCredentials =>{
         if(userCredentials) {
           this.router.navigate(['/lobby']);
