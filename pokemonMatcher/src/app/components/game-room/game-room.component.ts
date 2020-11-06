@@ -8,7 +8,7 @@ import { PokemonTCG } from 'pokemon-tcg-sdk-typescript'
 })
 export class GameRoomComponent implements OnInit {
 
-  constructor() { 
+  constructor() {
     PokemonTCG.Card.find('xy1')
   .then(card => {
     // do stuff with the card
@@ -37,5 +37,5 @@ PokemonTCG.Card.all()
 
   ngOnInit(): void {
   }
-  
+
 }

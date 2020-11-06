@@ -1,11 +1,11 @@
 export interface User {
-  uid: number
+  uid: string
   displayName: string
   email: string
-  password: string
+  password?: string
   photoURL: any
   wins: number
-  loses: number
+  losses: number
   wonTo: []
   lostTo: []
 }

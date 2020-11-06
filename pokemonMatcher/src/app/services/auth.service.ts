@@ -8,8 +8,6 @@ import {ModalErrComponent} from '../components/modal-err/modal-err.component'
 
 
 
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -46,6 +44,8 @@ err: ''
       this.firebaseAuth
       .signInWithPopup(provider)
       .then(res =>{
+
+
         resolve(this.router.navigate(['/lobby']))
       }, err =>{
         console.log(err);
@@ -79,7 +79,7 @@ err: ''
   insertUserData(userCredentials: firebase.auth.UserCredential){
     return this.db.doc(`Users/${userCredentials.user.uid}`).set({
       email: this.newUser.email,
-      username: this.newUser.username,
+      displayName: this.newUser.username,
       password: this.newUser.password
     })
   }

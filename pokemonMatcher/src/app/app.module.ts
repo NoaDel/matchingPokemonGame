@@ -15,7 +15,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
-import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { BadPageComponent } from './components/bad-page/bad-page.component';
@@ -46,7 +46,7 @@ import { ModalErrComponent } from './components/modal-err/modal-err.component';
     FormsModule,
 
   ],
-  providers: [],
+  providers: [AngularFirestore],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
