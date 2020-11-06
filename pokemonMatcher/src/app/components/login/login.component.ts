@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 
 
+
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -18,17 +20,8 @@ export class LoginComponent implements OnInit {
   }
 
 
-  onSignIn(email, password){
-    this.firebaseAuth.login(email, password)
-    .then(res => {
-
-      console.log(res);
-    }, err => {
-      console.log(err);
-      this.error = err
-      console.log(this.error)
-      return false
-    })
+  onSignIn(frm){
+    this.firebaseAuth.login(frm.value.email, frm.value.password)
   }
 
    handleGoogleLogin(){

@@ -16,17 +16,8 @@ error: string
   ngOnInit(): void {
   }
 
-  register(email, password){
-    this.firebaseAuth.register(email, password)
-    .then(res => {
-      console.log(res);
-    }, err => {
-      console.log(err);
-      this.error = err
-      console.log(this.error)
-      return false
-
-    })
+  register(frm){
+    this.firebaseAuth.register(frm.value)
   }
 
 }

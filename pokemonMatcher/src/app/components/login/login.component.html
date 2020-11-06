@@ -4,14 +4,16 @@
   </div>
 
     <div>
-      <form>
+      <form #loginForm="ngForm" (ngSubmit)="onSignIn(loginForm)" >
+
         <label for="email">Email:</label>
-        <input type="email" name="email" #email placeholder="Ex. Ashketchum@gmail.com">
+        <input ngModel type="email"  name="email" #email="ngModel" placeholder="Ex. Ashketchum@gmail.com">
+
         <br>
         <label for="password">Password:</label>
 
-        <input type="password" name="password" #password placeholder="Password">
-        <button (click)="onSignIn(email.value, password.value)">Login</button>
+        <input ngModel type="password" name="password" #password="ngModel" placeholder="Password">
+        <button type="submit">Login</button>
       </form>
       <br>
       <button (click)="handleGoogleLogin()">Login With Google</button>
