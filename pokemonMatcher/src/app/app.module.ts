@@ -14,6 +14,12 @@ import { LobbyComponent } from './components/lobby/lobby.component';
 import { GameRoomComponent } from './components/game-room/game-room.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+
+import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -23,7 +29,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     LobbyComponent,
     GameRoomComponent,
     SignUpComponent,
-    NavbarComponent
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,8 +39,13 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     MatToolbarModule,
     MatButtonModule,
     MatProgressSpinnerModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
+    AngularFireAuthModule,
+    ReactiveFormsModule,
+    FormsModule,
   ],
-  providers: [],
+  providers: [AngularFirestore],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
