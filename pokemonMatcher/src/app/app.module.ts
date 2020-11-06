@@ -10,6 +10,8 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { LobbyComponent } from './components/lobby/lobby.component';
 import { GameRoomComponent } from './components/game-room/game-room.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+// import { HttpModule } from '@angular/http';
+import { PokedexService } from './pokedex.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
     BrowserAnimationsModule,
     MaterialModule
   ],
-  providers: [],
+  providers: [PokedexService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
