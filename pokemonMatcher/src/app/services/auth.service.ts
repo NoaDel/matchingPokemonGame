@@ -70,9 +70,9 @@ err: ''
 
         })
     })
-    .catch( error => {
-      alert(error)
-      console.log(error)
+    .catch( err =>{
+      this.err = err
+      this.errorMessage(this.err)
     })
   }
 
