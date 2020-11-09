@@ -5,6 +5,8 @@ import { AuthService } from 'src/app/services/auth.service';
 import { User } from '../../interfaces/user'
 import { Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
+import { GameService } from '../../services/game.service'
+import { Cards  } from '../../interfaces/cards'
 
 
 @Component({
@@ -15,21 +17,26 @@ import { map } from 'rxjs/operators'
 export class LobbyComponent implements OnInit {
   public getUsers: AngularFirestoreCollection<User>
   users: User[] = []
+  cards: Cards
+
 
   user: firebase.User
   constructor(
     private db: AngularFirestore,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private game: GameService,
   ) {
     this.getUsers = this.db.collection('Users')
     // this.user = this.db.doc(`users/${uid}`)
   }
 
   ngOnInit(): void {
+    this.getSets()
     this.auth.getUserState()
     .subscribe(user => {
       this.user = user;
+
     })
 
     this.getUsersObservable().subscribe(users => {
@@ -38,8 +45,16 @@ export class LobbyComponent implements OnInit {
       console.log(users)
     });
 
+}
 
+  getSets(){
+   this.game.getCardSets().subscribe(data =>{
+     this.cards = data
+     console.log(this.cards)
+
+   })
   }
+
 
 
   getUsersObservable(): Observable<User[]> {

@@ -80,7 +80,11 @@ err: ''
     return this.db.doc(`Users/${userCredentials.user.uid}`).set({
       email: this.newUser.email,
       displayName: this.newUser.username,
-      password: this.newUser.password
+      password: this.newUser.password,
+      wins: 0,
+      losses: 0,
+      wonTo: [],
+      lostTo: []
     })
   }
 

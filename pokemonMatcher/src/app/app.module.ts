@@ -21,6 +21,9 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { BadPageComponent } from './components/bad-page/bad-page.component';
 import { ModalErrComponent } from './components/modal-err/modal-err.component';
 
+import { HttpClientModule } from '@angular/common/http';
+
+
 
 
 @NgModule({
@@ -44,6 +47,7 @@ import { ModalErrComponent } from './components/modal-err/modal-err.component';
     AngularFireAuthModule,
     ReactiveFormsModule,
     FormsModule,
+    HttpClientModule
 
   ],
   providers: [AngularFirestore],

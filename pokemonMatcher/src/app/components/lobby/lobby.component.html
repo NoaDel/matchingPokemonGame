@@ -5,32 +5,37 @@
   </div>
 
   <div>
-    <div>
-      <label for="playerSelect">Select Number of players:</label>
-      <select name="numOfPlayers" >
-        <option value="">--Please choose an option--</option>
-        <option value="onePlayer">Single player</option>
-        <option value="twoPlayer">2 Players</option>
-        <option value="threePlayer">3 Players</option>
-        <option value="fourPlayer">4 players</option>
-      </select>
-    </div>
+    <form>
+      <div>
+        <label for="playerSelect">Select Number of players:</label>
+        <select name="numOfPlayers" >
+          <option value="">--Please choose an option--</option>
+          <option value="onePlayer">Single player</option>
+          <option value="twoPlayer">2 Players</option>
+          <option value="threePlayer">3 Players</option>
+          <option value="fourPlayer">4 players</option>
+        </select>
+      </div>
 
-    <div>
-      <label for="cardSet">Select card set:</label>
-      <select name="cardSet">
-        <option value="">--Please choose an option--</option>
-      </select>
-    </div>
+      <div *ngIf="cards">
+        <label for="cardSet">Select card set:</label>
+        <select name="cardSet" >
+          <option *ngFor="let card of cards.sets">{{card.name}}</option>
+        </select>
+      </div>
 
-    <div>
-      Select opponent(s)
-      <p *ngFor="let user of users">{{user.displayName}}</p>
-    </div>
+      <div>
+        Select opponent(s)
+        <ul *ngFor="let user of users"><li>{{user.displayName}}</li></ul>
+      </div>
 
+
+    </form>
 
   </div>
 
+  <p>MATCHES FOUND 0 -- soon</p>
+  <button>START GAME</button>
 
 
 </body>
