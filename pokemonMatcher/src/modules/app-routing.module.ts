@@ -3,32 +3,32 @@ import { Routes, RouterModule } from '@angular/router';
 import { LobbyComponent } from 'src/app/components/lobby/lobby.component';
 import { SignUpComponent } from 'src/app/components/sign-up/sign-up.component';
 import { UserProfileComponent } from 'src/app/components/user-profile/user-profile.component';
-import { LoginComponent } from "../app/components/login/login.component";
-import { AngularFireAuthGuard, redirectUnauthorizedTo } from '@angular/fire/auth-guard'
+import { LoginComponent } from '../app/components/login/login.component';
+import { AngularFireAuthGuard, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 import { BadPageComponent } from 'src/app/components/bad-page/bad-page.component';
 
-const redirectUnauthorizedUsers = () => redirectUnauthorizedTo(['login'])
+const redirectUnauthorizedUsers = () => redirectUnauthorizedTo(['login']);
 
 const routes: Routes = [
   {
-    path:"", redirectTo: 'login', pathMatch: 'full'
+    path: '', redirectTo: 'login', pathMatch: 'full'
   },
   {
-    path:'login', component: LoginComponent},
+    path: 'login', component: LoginComponent},
   {
-    path:'sign-up', component: SignUpComponent},
+    path: 'sign-up', component: SignUpComponent},
   {
-    path:'lobby', component: LobbyComponent,
+    path: 'lobby', component: LobbyComponent,
    canActivate: [AngularFireAuthGuard],
    data: {authGuardPipe: redirectUnauthorizedUsers}
   },
   {
-    path:'profile', component: UserProfileComponent,
+    path: 'profile', component: UserProfileComponent,
     canActivate: [AngularFireAuthGuard],
    data: {authGuardPipe: redirectUnauthorizedUsers}
   },
   {
-    path:'**', component:BadPageComponent
+    path: '**', component: BadPageComponent
   }
 
 ];

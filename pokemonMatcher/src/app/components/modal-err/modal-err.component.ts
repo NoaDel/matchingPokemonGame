@@ -13,7 +13,7 @@ export class ModalErrComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.auth.err)
+    console.log(this.auth.err);
   }
 
 }

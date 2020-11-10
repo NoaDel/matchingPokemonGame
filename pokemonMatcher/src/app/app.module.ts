@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { MaterialModule } from '../modules/material.module'
+import { MaterialModule } from '../modules/material.module';
+import { MatToolbarModule} from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { AppRoutingModule } from '../modules/app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,21 +13,13 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { LobbyComponent } from './components/lobby/lobby.component';
 import { GameRoomComponent } from './components/game-room/game-room.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
-
-
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 
 import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
-import { FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { BadPageComponent } from './components/bad-page/bad-page.component';
-import { ModalErrComponent } from './components/modal-err/modal-err.component';
-
-import { HttpClientModule } from '@angular/common/http';
-
-
-
 
 @NgModule({
   declarations: [
@@ -34,21 +29,21 @@ import { HttpClientModule } from '@angular/common/http';
     LobbyComponent,
     GameRoomComponent,
     SignUpComponent,
-    BadPageComponent,
-    ModalErrComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatProgressSpinnerModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     AngularFireAuthModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
-
   ],
   providers: [AngularFirestore],
   bootstrap: [AppComponent]
