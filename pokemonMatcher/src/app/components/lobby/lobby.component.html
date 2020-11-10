@@ -1,8 +1,7 @@
-<body>
-  <div>
-    <p *ngIf="user">Welcome {{user.displayName}}!</p>
-    <button (click)="handleLogout()">logout</button>
-  </div>
+<app-navbar></app-navbar>
+<p>lobby works!</p>
+<p *ngIf="user">Logged in as: {{user.displayName}} Email: {{user.email}}</p>
+<button (click)="handleLogout()">logout</button>
 
   <div>
     <form>
