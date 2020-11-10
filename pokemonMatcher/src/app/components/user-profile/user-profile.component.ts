@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ProgressSpinnerMode } from '@angular/material/progress-spinner';
+import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-profile',
@@ -12,14 +13,18 @@ export class UserProfileComponent implements OnInit {
   gamesLost: number;
   playersWonAgainst: string;
   playersLostAgainst: string;
-  constructor() {}
 
+  user: firebase.User;
+  constructor(
+    private auth: AuthService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
-    // this.auth.getUserState()
-    // .subscribe(user => {
-    //   this.user = user;
-    // })
+    this.auth.getUserState()
+    .subscribe(user => {
+      this.user = user;
+    });
   }
 
 }

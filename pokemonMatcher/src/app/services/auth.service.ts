@@ -59,21 +59,21 @@ err: '';
   register(user){
       this.firebaseAuth.createUserWithEmailAndPassword(user.email, user.password)
       .then(userCredentials => {
-        this.newUser = user
-        console.log(userCredentials)
+        this.newUser = user;
+        console.log(userCredentials);
         userCredentials.user.updateProfile({
           displayName: user.username
-        })
+        });
         this.insertUserData(userCredentials)
         .then(() => {
           this.router.navigate(['/lobby']);
 
         })
     })
-    .catch( err =>{
-      this.err = err
-      this.errorMessage(this.err)
-    })
+    .catch( err => {
+      this.err = err;
+      this.errorMessage(this.err);
+    });
   }
 
   insertUserData(userCredentials: firebase.auth.UserCredential){
