@@ -24,6 +24,8 @@
         </select>
       </div>
 
+
+      <!-- ng if single player dont show -->
       <div>
         Select opponent(s)
         <ul *ngFor="let user of users"><li>{{user.displayName}}</li></ul>
@@ -34,8 +36,8 @@
 
   </div>
 
-  <p>MATCHES FOUND 0 -- soon</p>
-  <button>START GAME</button>
+  <p>MATCHES TO FIND</p>
+  <button routerLink="/game">START GAME</button>
 
 
 </body>

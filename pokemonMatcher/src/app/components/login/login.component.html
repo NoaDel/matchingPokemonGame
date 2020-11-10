@@ -1,9 +1,9 @@
 <body>
-  <div>
+  <div class="header">
     <p style="font-size: 32px;">Pokémon Matcher!</p>
   </div>
 
-    <div>
+    <div class="box">
       <form #loginForm="ngForm" (ngSubmit)="onSignIn(loginForm)" >
 
         <label for="email">Email:</label>
@@ -15,7 +15,6 @@
         <input ngModel type="password" name="password" #password="ngModel" placeholder="Password">
         <button type="submit">Login</button>
       </form>
-      <br>
       <button (click)="handleGoogleLogin()">Login With Google</button>
     </div>
 

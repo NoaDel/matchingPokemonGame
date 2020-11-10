@@ -6,6 +6,7 @@ import { UserProfileComponent } from 'src/app/components/user-profile/user-profi
 import { LoginComponent } from "../app/components/login/login.component";
 import { AngularFireAuthGuard, redirectUnauthorizedTo } from '@angular/fire/auth-guard'
 import { BadPageComponent } from 'src/app/components/bad-page/bad-page.component';
+import { GameRoomComponent } from 'src/app/components/game-room/game-room.component';
 
 const redirectUnauthorizedUsers = () => redirectUnauthorizedTo(['login'])
 
@@ -26,6 +27,11 @@ const routes: Routes = [
     path:'profile', component: UserProfileComponent,
     canActivate: [AngularFireAuthGuard],
    data: {authGuardPipe: redirectUnauthorizedUsers}
+  },
+  {
+    path:'game', component: GameRoomComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: {authGuardPipe: redirectUnauthorizedUsers}
   },
   {
     path:'**', component:BadPageComponent
