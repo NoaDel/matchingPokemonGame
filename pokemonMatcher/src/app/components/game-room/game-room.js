@@ -1,87 +1,104 @@
-// var app = angular.module('AppComponent', []);
+let card = document.getElementsByClassName("card");
+let cards = [...card];
+console.log("test");
+for (var i = 0; i < cards.length; i++){
+   cards[i].addEventListener("click", displayCard);
+};
 
-// function Card(num) {
-//     this.url = 'images/monsters-' + num + '.png';
-//     this.open = false;
-//     this.matched = false;
-//   }
-  
-//   app.controller('MyController', function($scope, $timeout) {
-//     $scope.state = "first";
-//     $scope.firstCard;
-//     $scope.secondCard;
-//     $scope.count = 0;
-//     $scope.countDown = 15;
-//     $scope.cards = [
-//       [
-//         new Card('01'),
-//         new Card('02'),
-//         new Card('03'),
-//         new Card('04')
-//       ],
-//       [
-//         new Card('01'),
-//         new Card('02'),
-//         new Card('03'),
-//         new Card('04')
-//       ]
-  
-//     ];
-//   console.log($scope.cards);
-  
-//     $scope.click = function(card) {
-//       if ($scope.state === "first") {
-//           card.open = true;
-//           $scope.firstCard = card;
-//           $scope.state = "second";
-//           console.log($scope.firstCard.url);
-//         }
-//       else if ($scope.state === "second") {
-//           card.open = true;
-//           $scope.secondCard = card;
-//           console.log($scope.secondCard.url);
-//           if ($scope.firstCard.url === $scope.secondCard.url) {
-//             console.log("check");
-//             $scope.state = "first";
-//             $scope.matched = true;
-//             $scope.firstCard.matched = true;
-//             $scope.count += 1;
-//               if ($scope.count === 4) {
-//                 console.log("Win!");
-//               }
-//             console.log($scope.count);
-//             // console.log($scope.matched);
-//             // console.log($scope.firstCard.matched);
-//             // console.log($scope.secondCard.matched);
-//             // console.log($scope.state);
-//             }
-//           if ($scope.firstCard.url !== $scope.secondCard.url) {
-//             console.log("not matched");
-//             $scope.countDown -= 1;
-//             console.log($scope.countDown);
-//               if ($scope.countDown === 0) {
-//                 console.log("You lose");
-//               }
-//             $timeout(function() {
-//               $scope.firstCard.open = false;
-//               $scope.secondCard.open = false;
-//             }, 1000);
-  
-//             $scope.state = "first";
-//             console.log($scope.state);
-//           }
-//         }
-  
-//     // function winner(element, index, array) {
-//     //   return element >= 10;
-//     // }
-  
-  
-//   };
-//     // $scope.click = function(card) {
-//     //       card.open = true;
-//     //     };
-  
-  
-  
-//   });
+var displayCard = function (){
+    this.classList.toggle("open");
+    this.classList.toggle("show");
+    this.classList.toggle("disabled");
+ }
+
+ function shuffle(array){
+     var current = array.length, temporaryValue, random;
+     while (currentIndex !== 0){
+        random = Math.floor(Math.random() * current);
+        current -= 1;
+        temporaryValue = array[current];
+        array[current] = array[random];
+        array[random] = temporaryValue;
+     }
+     return array;
+ }
+ const deck = document.querySelector(".deck");
+ console.log(deck);
+function startGame(){
+   var shuffledCards = shuffle(cards);
+   for (var i= 0; i < shuffledCards.length; i++){
+      [].forEach.call(shuffledCards, function(item){
+         deck.appendChild(item);
+      });
+   }
+}
+
+window.onload = startGame();
+
+function cardOpen() {
+    openedCards.push(this);
+    var len = openedCards.length;
+    if(len === 2){
+        moveCounter();
+        if(openedCards[0].type === openedCards[1].type){
+            matched();
+        } else {
+            unmatched();
+        }
+    }
+};
+
+function matched(){
+    openedCards[0].classList.add("match");
+    openedCards[1].classList.add("match");
+    openedCards[0].classList.remove("show", "open");
+    openedCards[1].classList.remove("show", "open");
+    openedCards = [];
+}
+
+function unmatched(){
+    openedCards[0].classList.add("unmatched");
+    openedCards[1].classList.add("unmatched");
+    disable();
+    setTimeout(function(){
+        openedCards[0].classList.remove("show", "open", "unmatched");
+        openedCards[1].classList.remove("show", "open", "unmatched");
+        enable();
+        openedCards = [];
+    },1100);
+}
+
+function disable(){
+    Array.prototype.filter.call(cards, function(card){
+        card.classList.add('disabled');
+    });
+}
+
+function enable(){
+    Array.prototype.filter.call(cards, function(card){
+        card.classList.remove('disabled');
+        for(var i = 0; i < matchedCard.length; i++){
+            matchedCard[i].classList.add("disabled");
+        }
+    });
+}
+function moveCounter(){
+    moves++;
+    counter.innerHTML = moves;
+
+// setting rates based on moves
+    if (moves > 8 && moves < 12){
+        for( i= 0; i < 3; i++){
+            if(i > 1){
+                stars[i].style.visibility = "collapse";
+            }
+        }
+    }
+    else if (moves > 13){
+        for( i= 0; i < 3; i++){
+            if(i > 0){
+                stars[i].style.visibility = "collapse";
+            }
+        }
+    }
+}
