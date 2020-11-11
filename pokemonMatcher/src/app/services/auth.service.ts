@@ -57,10 +57,6 @@ user: User
     });
   }
 
-
-
-
-
   private updateUserData(userCredentials){
 
     const userRef: AngularFirestoreDocument<User> = this.db.collection("Users").doc(userCredentials.uid);
@@ -70,6 +66,7 @@ user: User
           uid: userCredentials.uid,
           email: userCredentials.email,
           displayName: userCredentials.displayName,
+          totalBattle: 0,
           wins: 0,
           losses: 0,
           wonTo: [],
@@ -78,8 +75,6 @@ user: User
       }
     })
 }
-
-
 
   register(user){
       this.firebaseAuth.createUserWithEmailAndPassword(user.email, user.password)

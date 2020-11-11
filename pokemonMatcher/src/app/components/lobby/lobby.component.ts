@@ -68,6 +68,7 @@ export class LobbyComponent implements OnInit {
               password: item.payload.doc.data().displayName,
               email: item.payload.doc.data().email,
               photoURL: item.payload.doc.data().photoURL,
+              totalBattle: item.payload.doc.data().totalBattle,
               wins: item.payload.doc.data().wins,
               losses: item.payload.doc.data().losses,
               wonTo: item.payload.doc.data().wonTo,
@@ -80,8 +81,27 @@ export class LobbyComponent implements OnInit {
   }
 
 
+  //pokeballradio btn
+  // options: string[] = ["option1", "option2", "option3", "option4"];
+  // pokeball: any
 
-  handleLogout(){
-    this.auth.logout()
-  }
+  // selectRadio(){
+  //   this.options.forEach(option => {
+  //     document.getElementById(option).addEventListener("click", function() {
+  //       const pokeballs = (document.getElementsByClassName("pokeball").value)
+  //       for (var i = 0; i < pokeballs.length; i++) {
+  //         pokeball = pokeballs[i];
+  //         if (pokeball.parentNode.id != option) {
+  //           pokeball.classList.remove("selected");
+  //           pokeball.parentNode.classList.add("faded");
+  //         } else {
+  //           pokeball.classList.add("selected");
+  //           pokeball.parentNode.classList.remove("faded");
+  //         }
+  //       }
+  //     });
+  //   });
+  // }
+
+
 }
