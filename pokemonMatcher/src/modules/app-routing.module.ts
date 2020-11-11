@@ -29,7 +29,7 @@ const routes: Routes = [
    data: {authGuardPipe: redirectUnauthorizedUsers}
   },
   {
-    path:'game', component: GameRoomComponent,
+    path:'game-room', component: GameRoomComponent,
     canActivate: [AngularFireAuthGuard],
     data: {authGuardPipe: redirectUnauthorizedUsers}
   },

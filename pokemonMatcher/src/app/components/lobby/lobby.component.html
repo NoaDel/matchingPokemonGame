@@ -1,42 +1,41 @@
 <app-navbar></app-navbar>
-<p>lobby works!</p>
-<p *ngIf="user">Logged in as: {{user.displayName}} Email: {{user.email}}</p>
-<button (click)="handleLogout()">logout</button>
+<body>
+  <p *ngIf="user">Logged in as: {{user.displayName}} </p>
 
-  <div>
-    <form>
-      <div>
-        <label for="playerSelect">Select Number of players:</label>
-        <select name="numOfPlayers" >
-          <option value="">--Please choose an option--</option>
-          <option value="onePlayer">Single player</option>
-          <option value="twoPlayer">2 Players</option>
-          <option value="threePlayer">3 Players</option>
-          <option value="fourPlayer">4 players</option>
-        </select>
-      </div>
+    <div>
+      <form>
+        <div>
+          <label for="playerSelect">Select Number of players:</label>
+          <select name="numOfPlayers" >
+            <option value="">--Please choose an option--</option>
+            <option value="onePlayer">Single player</option>
+            <option value="twoPlayer">2 Players</option>
+            <option value="threePlayer">3 Players</option>
+            <option value="fourPlayer">4 players</option>
+          </select>
+        </div>
 
-      <div *ngIf="cards">
-        <label for="cardSet">Select card set:</label>
-        <select name="cardSet" >
-          <option *ngFor="let card of cards.sets">{{card.name}}</option>
-        </select>
-      </div>
-
-
-      <!-- ng if single player dont show -->
-      <div>
-        Select opponent(s)
-        <ul *ngFor="let user of users"><li>{{user.displayName}}</li></ul>
-      </div>
+        <div *ngIf="cards">
+          <label for="cardSet">Select card set:</label>
+          <select name="cardSet" >
+            <option *ngFor="let card of cards.sets">{{card.name}}</option>
+          </select>
+        </div>
 
 
-    </form>
+        <!-- ng if single player dont show -->
+        <div>
+          Select opponent(s)
+          <ul *ngFor="let user of users"><li>{{user.displayName}}</li></ul>
+        </div>
 
-  </div>
 
-  <p>MATCHES TO FIND</p>
-  <button routerLink="/game">START GAME</button>
+      </form>
+
+    </div>
+
+    <p>MATCHES TO FIND</p>
+    <button routerLink="/game">START GAME</button>
 
 
 </body>

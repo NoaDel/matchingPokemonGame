@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { auth } from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreModule, DocumentChangeAction } from '@angular/fire/firestore';
 import {MatDialog} from '@angular/material/dialog';
 import {ModalErrComponent} from '../components/modal-err/modal-err.component';
-
+import { User } from '../interfaces/user'
 
 
 @Injectable({
@@ -14,6 +14,7 @@ import {ModalErrComponent} from '../components/modal-err/modal-err.component';
 export class AuthService {
 newUser: any;
 err: '';
+user: User
 
   constructor(
     private firebaseAuth: AngularFireAuth,
@@ -43,7 +44,11 @@ err: '';
       provider.addScope('email');
       this.firebaseAuth
       .signInWithPopup(provider)
-      .then(res => {
+      .then((userCredentials) => {
+        console.log(userCredentials)
+        this.updateUserData(userCredentials.user)
+
+
         resolve(this.router.navigate(['/lobby']));
       }, err => {
         console.log(err);
@@ -51,6 +56,28 @@ err: '';
       });
     });
   }
+
+
+
+
+
+  private updateUserData(userCredentials){
+
+    const userRef: AngularFirestoreDocument<User> = this.db.collection("Users").doc(userCredentials.uid);
+    userRef.get().subscribe(doc => {
+      if(!doc.exists){
+        userRef.set({
+          uid: userCredentials.uid,
+          email: userCredentials.email,
+          displayName: userCredentials.displayName,
+          wins: 0,
+          losses: 0,
+          wonTo: [],
+          lostTo: []
+        })
+      }
+    })
+}
 
 
 
@@ -85,6 +112,7 @@ err: '';
       lostTo: []
     })
   }
+
 
   login(email, password){
 

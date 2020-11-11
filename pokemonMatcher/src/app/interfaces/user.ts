@@ -1,9 +1,9 @@
 export interface User {
   uid: string
   displayName: string
-  email: string
+  email?: string
   password?: string
-  photoURL: any
+  photoURL?: any
   wins: number
   losses: number
   wonTo: []

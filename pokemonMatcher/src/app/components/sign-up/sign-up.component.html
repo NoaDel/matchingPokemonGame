@@ -1,9 +1,9 @@
 <body>
-  <div>
+  <div class="header">
     <p style="font-size: 32px;">Pokémon Matcher!</p>
   </div>
 
-    <div>
+    <div class="box">
       <form #userRegForm="ngForm" (ngSubmit)="register(userRegForm)">
          <label for="username">Username:</label>
         <input ngModel type="text" #username='ngModel' name="username" placeholder="Ex. John Smith" >
@@ -16,13 +16,14 @@
         <br>
         <button type="submit">Sign up</button>
       </form>
+      <div>
+        <h3>Already have an account?
+          <a routerLink="/login" routerLinkActive="active">Login here!</a>
+        </h3>
+      </div>
     </div>
 
-    <div>
-      <h3>Already have an account?
-        <a routerLink="/login" routerLinkActive="active">Login here!</a>
-      </h3>
-    </div>
+
 </body>
 
 
