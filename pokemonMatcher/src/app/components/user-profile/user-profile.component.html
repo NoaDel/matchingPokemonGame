@@ -1,9 +1,22 @@
-<app-navbar></app-navbar>
+<app-navbar> </app-navbar>
 <body>
-  <p class="profile" style="font-size: 24px; padding: 10px;">User Profile</p>
-  <p class="gamesPlayed" style="font-size: 16px; padding: 10px;">Battles Fought:</p>
-  <p class="gamesWon" style="font-size: 16px; padding: 10px;">Battles Won:</p>
-  <p class="gamesLost" style="font-size: 16px; padding: 10px;">Battles Lost:</p>
-  <p class="playersWonAgainst" style="font-size: 16px; padding: 10px;">Trainers You've Won Against:</p>
-  <p class="playersLostAgainst" style="font-size: 16px; padding: 10px;">Trainers You've Lost Against:</p>
+  <p class="profile" style="font-size: 24px; padding: 10px; margin-left: 425px; margin-top: 25px;">User Profile</p>
+  <p *ngIf="user" style="font-size: 16px; padding: 10px; margin-left: 350px; margin-top: 25px;"> User: {{user.displayName}} Email: {{user.email}}</p>
+  <p class="gamesPlayed" *ngIf="user" style="font-size: 16px; padding: 10px; margin-left: 350px;">Battles Fought:</p>
+  <p class="gamesWon" *ngIf="user" style="font-size: 16px; padding: 10px; margin-left: 350px;">Battles Won:</p>
+  <p class="gamesLost" *ngIf="user" style="font-size: 16px; padding: 10px; margin-left: 350px;">Battles Lost:</p>
+  <p class="playersWonAgainst" *ngIf="user" style="font-size: 16px; padding: 10px; margin-left: 350px;">Trainers You've Won Against:</p>
+  <p class="playersLostAgainst" *ngIf="user" style="font-size: 16px; padding: 10px; margin-left: 350px;">Trainers You've Lost Against:</p>
 </body>
+
+
+<!-- <app-navbar></app-navbar>
+<body>
+  <p class="profile" style="font-size: 24px; padding: 10px; margin-left: 425px; margin-top: 25px;">User Profile</p>
+  <p *ngIf="user"> {{user.displayName}} Email: {{user.email}}</p>
+  <p class="gamesPlayed" style="font-size: 16px; padding: 10px; margin-left: 350px;">Battles Fought:</p>
+  <p class="gamesWon" style="font-size: 16px; padding: 10px; margin-left: 350px;">Battles Won: {{user.wins}}</p>
+  <p class="gamesLost" style="font-size: 16px; padding: 10px; margin-left: 350px;">Battles Lost: {{user.losses}}</p>
+  <p class="playersWonAgainst" style="font-size: 16px; padding: 10px; margin-left: 350px;">Trainers You've Won Against: {{user.wonTo}}</p>
+  <p class="playersLostAgainst" style="font-size: 16px; padding: 10px; margin-left: 350px;">Trainers You've Lost Against: {{user.lostTo}}</p>
+</body> -->
