@@ -30,7 +30,6 @@ export class UserProfileComponent implements OnInit {
     private router: Router
   ) {
   }
-
   ngOnInit(): void {
 
     this.auth.getUserState()
@@ -52,6 +51,8 @@ export class UserProfileComponent implements OnInit {
   getUserObservable(): Observable<User> {
     return this.getUser.valueChanges()
   }
-
+  getUserObservable(): Observable<User> {
+    return this.getUser.valueChanges()
+  }
 }
 
