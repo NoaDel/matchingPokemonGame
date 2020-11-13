@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, DocumentChangeAction } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
@@ -28,7 +28,6 @@ export class LobbyComponent implements OnInit {
     private game: GameService,
   ) {
     this.getUsers = this.db.collection('Users')
-    // this.user = this.db.doc(`users/${uid}`)
   }
 
   ngOnInit(): void {
@@ -80,28 +79,18 @@ export class LobbyComponent implements OnInit {
       );
   }
 
+selecteds: number[] = [] ;
+  clickEvent(selected: number){
 
-  //pokeballradio btn
-  // options: string[] = ["option1", "option2", "option3", "option4"];
-  // pokeball: any
+    const index = this.selecteds.indexOf(selected);
 
-  // selectRadio(){
-  //   this.options.forEach(option => {
-  //     document.getElementById(option).addEventListener("click", function() {
-  //       const pokeballs = (document.getElementsByClassName("pokeball").value)
-  //       for (var i = 0; i < pokeballs.length; i++) {
-  //         pokeball = pokeballs[i];
-  //         if (pokeball.parentNode.id != option) {
-  //           pokeball.classList.remove("selected");
-  //           pokeball.parentNode.classList.add("faded");
-  //         } else {
-  //           pokeball.classList.add("selected");
-  //           pokeball.parentNode.classList.remove("faded");
-  //         }
-  //       }
-  //     });
-  //   });
-  // }
+      if (index > 0) {
+        this.selecteds.splice(index, 1);
+      } else if(index == 0){
+        this.selecteds.shift()
 
-
+    } else {
+       this.selecteds.push(selected)
+    }
+}
 }
