@@ -22,7 +22,7 @@ export class GameService {
   }
 
   getCardSetById(id:string): Observable<Cards>{
-    return this.http.get<Cards>(`https://pokemontcg.io/cards?setCode=${id}`).pipe(map(data => data['data']));
+    return this.http.get<Cards>(`https://pokemontcg.io/v1/sets?setCode=${id}`).pipe(map(data => data['data']));
   }
 
 }
