@@ -1,24 +1,11 @@
 import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { POKEMON } from '../../pokemon';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-game-room',
-  template: `
-  <canvas #canvas width="600" height="300"></canvas>
-  <button (click)="animate()">Play</button>
-  <script src="game-room.js"></script>
-<div class="deck" name="deck" id="deck">
-    <ul></ul>
-    <ul></ul>
-    <ul></ul>
-    <ul></ul>
-    <ul></ul>
-    <ul></ul>
-</div>
-<div class="restart" onclick="startGame()">
- </div>   
-`,
-  styles: ['canvas { border-style: solid }']
+  templateUrl: './game-room.component.html',
+  styleUrls: ['./game-room.component.scss']
 })
 export class GameRoomComponent implements OnInit {
   
@@ -66,9 +53,15 @@ export class GameRoomComponent implements OnInit {
     this.ctx.lineTo(45, 175);
     this.ctx.lineTo(45, 180);
     this.ctx.lineTo(287.5, 180);
+    this.ctx.font = "24px pokemon-font"
+    this.ctx.fillText("testing", 50, 50);
     this.ctx.closePath();
     this.ctx.fill();
-    
+    var matcher = 0;
+
+    var cards = ['flower', 'wheat', 'tower', 'wheat', 'power', 'power', 'flower'];
+    // var cardsDom = document.getElementsByClassName('cards') as HTMLUListElement;
+    // cardsDom
   }
   
   animate(): void {}
