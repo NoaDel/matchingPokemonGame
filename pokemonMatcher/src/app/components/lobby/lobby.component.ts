@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, DocumentChangeAction } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
@@ -7,6 +7,7 @@ import { Observable } from 'rxjs'
 import { map } from 'rxjs/operators'
 import { GameService } from '../../services/game.service'
 import { Cards  } from '../../interfaces/cards'
+import { PlayerSelect } from '../../interfaces/player-select'
 
 
 @Component({
@@ -18,7 +19,8 @@ export class LobbyComponent implements OnInit {
   public getUsers: AngularFirestoreCollection<User>
   users: User[] = []
   cards: Cards
-
+  optionselected: number
+  playerSelect: PlayerSelect[]
 
   user: firebase.User
   constructor(
@@ -28,10 +30,18 @@ export class LobbyComponent implements OnInit {
     private game: GameService,
   ) {
     this.getUsers = this.db.collection('Users')
-    // this.user = this.db.doc(`users/${uid}`)
   }
 
   ngOnInit(): void {
+    this.playerSelect = [
+      {id: 0, viewValue: '--Please choose an option--'},
+      {id: 1, viewValue: 'Single Player'},
+      {id: 2, viewValue: '2 Players'},
+      {id: 3, viewValue: '3 Players'},
+      {id: 4, viewValue: '4 Players'}
+      ]
+      this.optionselected=0
+
     this.getSets()
     this.auth.getUserState()
     .subscribe(user => {
@@ -56,7 +66,7 @@ export class LobbyComponent implements OnInit {
   }
 
 
-
+//getting all users/data
   getUsersObservable(): Observable<User[]> {
     return this.getUsers.snapshotChanges()
       .pipe(
@@ -79,29 +89,25 @@ export class LobbyComponent implements OnInit {
 
       );
   }
+//pokemon radio btn
+selecteds: number[] = [] ;
+  clickEvent(selected: number){
+    let userCheck = this.optionselected
+    const index = this.selecteds.indexOf(selected);
 
+      if (index > 0 ) {
+        this.selecteds.splice(index, 1);
+      } else if(index == 0){
+        this.selecteds.shift()
 
-  //pokeballradio btn
-  // options: string[] = ["option1", "option2", "option3", "option4"];
-  // pokeball: any
-
-  // selectRadio(){
-  //   this.options.forEach(option => {
-  //     document.getElementById(option).addEventListener("click", function() {
-  //       const pokeballs = (document.getElementsByClassName("pokeball").value)
-  //       for (var i = 0; i < pokeballs.length; i++) {
-  //         pokeball = pokeballs[i];
-  //         if (pokeball.parentNode.id != option) {
-  //           pokeball.classList.remove("selected");
-  //           pokeball.parentNode.classList.add("faded");
-  //         } else {
-  //           pokeball.classList.add("selected");
-  //           pokeball.parentNode.classList.remove("faded");
-  //         }
-  //       }
-  //     });
-  //   });
-  // }
+    } else{
+      if(userCheck != this.selecteds.length){
+       this.selecteds.push(selected)
+      } else{
+        alert ('too many or too little users than selected')
+      }
+    }
+}
 
 
 }

@@ -3,17 +3,7 @@
   <p *ngIf="user">Logged in as: {{user.displayName}} </p>
 
     <div>
-      <form>
-        <div>
-          <label for="playerSelect">Select Number of players:</label>
-          <select name="numOfPlayers" >
-            <option value="">--Please choose an option--</option>
-            <option value="onePlayer">Single player</option>
-            <option value="twoPlayer">2 Players</option>
-            <option value="threePlayer">3 Players</option>
-            <option value="fourPlayer">4 players</option>
-          </select>
-        </div>
+      <form >
 
         <div *ngIf="cards">
           <label for="cardSet">Select card set:</label>
@@ -23,73 +13,48 @@
         </div>
 
 
-        <!-- ng if single player dont show -->
-        <div>
-          Select opponent(s)
-          <ul *ngFor="let user of users"><li>{{user.displayName}}</li></ul>
-        </div>
 
+        <div>
+          <label for="playerSelect">Select Number of players:</label>
+
+          <select id="playerSelect" name="playerSelect"
+          [(ngModel)]="optionselected">
+            <option *ngFor="let player of playerSelect" [value]="player.id">
+              {{player.viewValue}}
+            </option>
+          </select>
+          <br>
+          selected value is {{optionselected}}
+
+        <!-- ng if single player dont show -->
+        <div *ngIf="optionselected != playerSelect[0].id && optionselected != playerSelect[1].id">
+          {{playerSelect[0].id}}
+          <p>Select opponent(s)</p>
+          <div *ngFor="let user of users; let i = index;" [id]="user.uid">
+            <div class="options">
+              <div class="option faded" id="option1">
+
+                <div [ngClass]="selecteds.indexOf(i) >= 0 ? 'pokeball selected' : 'pokeball unselected'"
+                (click)="clickEvent(i)">
+                  <div class="upper-half"> </div>
+                  <div class="lower-half"> </div>
+                  <div class="base"> </div>
+                  <div class="inner-circle"> </div>
+                  <div class="indicator visible"> </div>
+                  <div class="indicator-inner"> </div>
+                </div>
+                <div> {{user.displayName}} </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
       </form>
 
     </div>
 
-    <p>MATCHES TO FIND</p>
     <button routerLink="/game">START GAME</button>
 
-
-
-
-
-
-
-
-    <div class="options">
-      <div class="option faded" id="option1">
-        <div class="pokeball unselected">
-          <div class="upper-half"> </div>
-          <div class="lower-half"> </div>
-          <div class="base"> </div>
-          <div class="inner-circle"> </div>
-          <div class="indicator visible"> </div>
-          <div class="indicator-inner"> </div>
-        </div>
-        <div> Pikachu </div>
-      </div>
-      <div class="option faded" id="option2">
-        <div class="pokeball unselected">
-          <div class="upper-half"> </div>
-          <div class="lower-half"> </div>
-          <div class="base"> </div>
-          <div class="inner-circle"> </div>
-          <div class="indicator visible"> </div>
-          <div class="indicator-inner"> </div>
-        </div>
-        <div> Charizard </div>
-      </div>
-      <div class="option faded" id="option3">
-        <div class="pokeball unselected">
-          <div class="upper-half"> </div>
-          <div class="lower-half"> </div>
-          <div class="base"> </div>
-          <div class="inner-circle"> </div>
-          <div class="indicator visible"> </div>
-          <div class="indicator-inner"> </div>
-        </div>
-        <div> Squirtle </div>
-      </div>
-      <div class="option faded" id="option4">
-        <div class="pokeball unselected">
-          <div class="upper-half"> </div>
-          <div class="lower-half"> </div>
-          <div class="base"> </div>
-          <div class="inner-circle"> </div>
-          <div class="indicator visible"> </div>
-          <div class="indicator-inner"> </div>
-        </div>
-        <div> Jigglypuff </div>
-      </div>
-
-    </div>
 
 </body>
