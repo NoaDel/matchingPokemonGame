@@ -62,6 +62,10 @@ export class GameRoomComponent implements OnInit {
     var cards = ['flower', 'wheat', 'tower', 'wheat', 'power', 'power', 'flower'];
     // var cardsDom = document.getElementsByClassName('cards') as HTMLUListElement;
     // cardsDom
+    var deck = document.getElementById('deck') as HTMLDivElement;
+    for(var i; i < 19; i++){
+      deck.htmlToAdd
+    }
   }
   
   animate(): void {}
