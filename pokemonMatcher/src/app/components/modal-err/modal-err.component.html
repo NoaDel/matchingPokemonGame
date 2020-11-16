@@ -1,0 +1,17 @@
+<body>
+ <div class="modalSize">
+   <p>uh oh! Looks like there was a problem
+   </p>
+   <br>
+</div>
+<div class='errImgSize'>
+  <img class="professorErr" alt="professor Error" [src]="'../../../assets/img/professorOak.png'">
+</div>
+  <div mat-dialog-content>
+    <p style="font-size: 16px">{{this.auth.err}}</p>
+
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Close</button>
+  </div>
+</body>

@@ -1,26 +1,29 @@
-<div>
-  <h1>Pokémon Matcher</h1>
-</div>
-
-  <div>
-    <form>
-      <label for="username">Username:</label>
-      <input type="text" name="username" placeholder="Ex. John Smith">
-      <br>
-      <label for="email">Email:</label>
-      <input type="email" name="email" placeholder="Ex. Ashketchum@gmail.com">
-      <br>
-      <label for="password">Password:</label>
-      <input type="password" name="password" placeholder="Password">
-      <br>
-      <button type="submit">Sign up</button>
-    </form>
+<body>
+  <div class="header">
+    <p style="font-size: 32px;">Pokémon Matcher!</p>
   </div>
 
-  <div>
-    <h3>Already have an account?
-      <a routerLink="/login" routerLinkActive="active">Login here!</a>
-    </h3>
-  </div>
+    <div class="box">
+      <form #userRegForm="ngForm" (ngSubmit)="register(userRegForm)">
+         <label for="username">Username:</label>
+        <input ngModel type="text" #username='ngModel' name="username" placeholder="Ex. John Smith" >
+        <br>
+        <label for="email">Email:</label>
+        <input ngModel type="email" name="email" #email="ngModel" placeholder="Ex. Ashketchum@gmail.com" required>
+        <br>
+        <label for="password">Password:</label>
+        <input ngModel type="password" #password='ngModel' name="password" placeholder="Password" required>
+        <br>
+        <button type="submit">Sign up</button>
+      </form>
+      <div>
+        <h3>Already have an account?
+          <a routerLink="/login" routerLinkActive="active">Login here!</a>
+        </h3>
+      </div>
+    </div>
+
+
+</body>
 
 

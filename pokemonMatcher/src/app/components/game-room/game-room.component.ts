@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
-import { POKEMON } from '../../pokemon';
+// import { POKEMON } from '../../pokemon';a
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({

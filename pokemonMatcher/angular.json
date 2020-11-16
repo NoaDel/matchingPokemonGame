@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "pokemonMatcher"
+  "defaultProject": "pokemonMatcher",
+  "cli": {
+    "analytics": "9570b5e7-5e14-48f9-92d8-7ef918bfd047"
+  }
 }

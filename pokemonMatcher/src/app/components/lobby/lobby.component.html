@@ -1,1 +1,60 @@
-<p>lobby works!</p>
+<app-navbar></app-navbar>
+<body>
+  <p *ngIf="user">Logged in as: {{user.displayName}} </p>
+
+    <div>
+      <form >
+
+        <div *ngIf="cards">
+          <label for="cardSet">Select card set:</label>
+          <select name="cardSet" >
+            <option *ngFor="let card of cards.sets">{{card.name}}</option>
+          </select>
+        </div>
+
+
+
+        <div>
+          <label for="playerSelect">Select Number of players:</label>
+
+          <select id="playerSelect" name="playerSelect"
+          [(ngModel)]="optionselected">
+            <option *ngFor="let player of playerSelect" [value]="player.id">
+              {{player.viewValue}}
+            </option>
+          </select>
+          <br>
+          selected value is {{optionselected}}
+
+        <!-- ng if single player dont show -->
+        <div *ngIf="optionselected != playerSelect[0].id && optionselected != playerSelect[1].id">
+          {{playerSelect[0].id}}
+          <p>Select opponent(s)</p>
+          <div *ngFor="let user of users; let i = index;" [id]="user.uid">
+            <div class="options">
+              <div class="option faded" id="option1">
+
+                <div [ngClass]="selecteds.indexOf(i) >= 0 ? 'pokeball selected' : 'pokeball unselected'"
+                (click)="clickEvent(i)">
+                  <div class="upper-half"> </div>
+                  <div class="lower-half"> </div>
+                  <div class="base"> </div>
+                  <div class="inner-circle"> </div>
+                  <div class="indicator visible"> </div>
+                  <div class="indicator-inner"> </div>
+                </div>
+                <div> {{user.displayName}} </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      </form>
+
+    </div>
+
+    <button routerLink="/game">START GAME</button>
+
+
+</body>

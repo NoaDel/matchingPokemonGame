@@ -1,1 +1,16 @@
-<p>user-profile works!</p>
+<app-navbar> </app-navbar>
+
+<body>
+  <p class="profile" style="font-size: 24px; padding: 10px; margin-left: 425px; margin-top: 25px;">User Profile</p>
+  <p *ngIf="user" style="font-size: 16px; padding: 10px; margin-left: 350px; margin-top: 25px;"> User: {{user.displayName}}</p>
+  <p *ngIf="user" style="font-size: 16px; padding: 10px; margin-left: 350px;"> Email: {{user.email}}</p>
+  <p class="gamesPlayed" *ngIf="user" style="font-size: 16px; padding: 10px; margin-left: 350px;">Battles Fought:</p>
+  <p class="gamesWon" *ngIf="user" style="font-size: 16px; padding: 10px; margin-left: 350px;">Battles Won:</p>
+  <p class="gamesLost" *ngIf="user" style="font-size: 16px; padding: 10px; margin-left: 350px;">Battles Lost:</p>
+  <p class="playersWonAgainst" *ngIf="user" style="font-size: 16px; padding: 10px; margin-left: 350px;">Trainers You've Won Against:</p>
+  <p class="playersLostAgainst" *ngIf="user" style="font-size: 16px; padding: 10px; margin-left: 350px;">Trainers You've Lost Against:</p>
+  <img class="bosses" alt="Gym leaders" [src]="'../../../assets/img/gymLeaders.png'">
+</body>
+
+
+
