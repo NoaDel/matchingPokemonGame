@@ -1,6 +1,7 @@
 export interface Cards {
-  sets: any;
+  sets?: any;
   id: string;
   name: string;
-  set: string;
+  card: string;
+  set?: string;
 }

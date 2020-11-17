@@ -1,2 +1,6 @@
 <app-navbar></app-navbar>
-<p>game-room works!</p>
+<div *ngFor="let card of cards | async">
+  {{card.name}} ===
+  {{card.id}}
+
+</div>

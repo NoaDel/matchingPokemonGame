@@ -7,10 +7,11 @@
 
         <div *ngIf="cards">
           <label for="cardSet">Select card set:</label>
-          <select name="cardSet" >
-            <option *ngFor="let card of cards.sets">{{card.name}}</option>
+          <select name="cardSet" [(ngModel)]="setSelected" >
+            <option [value]="card.code" *ngFor="let card of cards.sets">{{card.name}}</option>
           </select>
         </div>
+        <p>{{setSelected}}</p>
 
 
 
@@ -54,7 +55,7 @@
 
     </div>
 
-    <button routerLink="/game">START GAME</button>
+    <button (click)="goToGame(setSelected)">START GAME</button>
 
 
 </body>

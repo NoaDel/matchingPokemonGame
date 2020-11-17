@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component,  OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, DocumentChangeAction } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
@@ -21,6 +21,7 @@ export class LobbyComponent implements OnInit {
   cards: Cards
   optionselected: number
   playerSelect: PlayerSelect[]
+  setSelected: string
 
   user: firebase.User
   constructor(
@@ -41,6 +42,7 @@ export class LobbyComponent implements OnInit {
       {id: 4, viewValue: '4 Players'}
       ]
       this.optionselected=0
+      this.setSelected= "base1"
 
     this.getSets()
     this.auth.getUserState()
@@ -109,5 +111,11 @@ selecteds: number[] = [] ;
     }
 }
 
+
+
+//game room stuff
+goToGame(id: string): void {
+  this.router.navigate([`game-room/${id}` ]);
+}
 
 }
