@@ -1,6 +1,6 @@
-<canvas #canvas width="600" height="300"></canvas>
-<div *ngFor="let deck of cardsoptions" class="deck" id="deck" >
-    {{deck.name}}
+<app-navbar></app-navbar>
+<div *ngFor="let card of cards | async">
+  {{card.name}} ===
+  {{card.id}}
+
 </div>
-<div class="restart" onclick="startGame()">
- </div>

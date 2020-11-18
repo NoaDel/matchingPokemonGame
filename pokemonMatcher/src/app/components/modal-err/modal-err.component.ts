@@ -10,12 +10,15 @@ import { AuthService } from 'src/app/services/auth.service';
 export class ModalErrComponent implements OnInit {
 
   constructor(
-    public dialog: MatDialog,
-    public auth: AuthService
+    public auth: AuthService,
+    public dialog: MatDialog
+
   ) { }
 
   ngOnInit(): void {
     console.log(this.auth.err);
   }
+
+
 
 }
