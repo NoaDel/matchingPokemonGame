@@ -5,7 +5,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreModule, DocumentChangeAction } from '@angular/fire/firestore';
 import {MatDialog} from '@angular/material/dialog';
 import {ModalErrComponent} from '../components/modal-err/modal-err.component';
-import { User } from '../interfaces/user'
+import { User } from '../interfaces/user';
 
 
 @Injectable({
@@ -14,7 +14,7 @@ import { User } from '../interfaces/user'
 export class AuthService {
 newUser: any;
 err: '';
-user: User
+user: User;
 
   constructor(
     private firebaseAuth: AngularFireAuth,
@@ -38,15 +38,15 @@ user: User
 
 
   googleLogin(){
-    return new Promise((resolve, reject) =>{
+    return new Promise((resolve, reject) => {
       let provider = new auth.GoogleAuthProvider();
       provider.addScope('profile');
       provider.addScope('email');
       this.firebaseAuth
       .signInWithPopup(provider)
       .then((userCredentials) => {
-        console.log(userCredentials)
-        this.updateUserData(userCredentials.user)
+        console.log(userCredentials);
+        this.updateUserData(userCredentials.user);
 
 
         resolve(this.router.navigate(['/lobby']));
@@ -59,9 +59,9 @@ user: User
 
   private updateUserData(userCredentials){
 
-    const userRef: AngularFirestoreDocument<User> = this.db.collection("Users").doc(userCredentials.uid);
+    const userRef: AngularFirestoreDocument<User> = this.db.collection('Users').doc(userCredentials.uid);
     userRef.get().subscribe(doc => {
-      if(!doc.exists){
+      if (!doc.exists){
         userRef.set({
           uid: userCredentials.uid,
           email: userCredentials.email,
@@ -71,9 +71,9 @@ user: User
           losses: 0,
           wonTo: [],
           lostTo: []
-        })
+        });
       }
-    })
+    });
 }
 
   register(user){
@@ -88,7 +88,7 @@ user: User
         .then(() => {
           this.router.navigate(['/lobby']);
 
-        })
+        });
     })
     .catch( err => {
       this.err = err;
@@ -105,27 +105,27 @@ user: User
       losses: 0,
       wonTo: [],
       lostTo: []
-    })
+    });
   }
 
 
   login(email, password){
 
       this.firebaseAuth.signInWithEmailAndPassword(email, password)
-      .catch(err =>{
-        this.err = err
-        this.errorMessage(this.err)
+      .catch(err => {
+        this.err = err;
+        this.errorMessage(this.err);
 
-      }).then(userCredentials =>{
-        if(userCredentials) {
+      }).then(userCredentials => {
+        if (userCredentials) {
           this.router.navigate(['/lobby']);
 
         }
-      })
+      });
   }
 
     logout(){
-      this.firebaseAuth.signOut().then(() => this.router.navigate(['/login']))
+      this.firebaseAuth.signOut().then(() => this.router.navigate(['/login']));
     }
 
 

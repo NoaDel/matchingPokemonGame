@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { MaterialModule } from '../modules/material.module';
 import { MatToolbarModule} from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 import { AppRoutingModule } from '../modules/app-routing.module';
 import { AppComponent } from './app.component';
@@ -39,7 +38,6 @@ import { HttpClientModule } from '@angular/common/http';
     MaterialModule,
     MatToolbarModule,
     MatButtonModule,
-    MatProgressSpinnerModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     AngularFireAuthModule,
