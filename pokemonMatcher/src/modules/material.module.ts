@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {MatDialogModule} from '@angular/material/dialog';
+import {MatDialogModule, } from '@angular/material/dialog';
 
 
 
@@ -15,12 +15,14 @@ import {MatDialogModule} from '@angular/material/dialog';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    MatDialogModule
+    MatDialogModule,
+
   ],
   exports: [
     FormsModule,
     ReactiveFormsModule,
-    MatDialogModule
+    MatDialogModule,
+
   ]
 })
 export class MaterialModule { }

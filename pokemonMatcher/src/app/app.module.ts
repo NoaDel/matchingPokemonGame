@@ -46,6 +46,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
+
   ],
   providers: [AngularFirestore],
   bootstrap: [AppComponent]
