@@ -13,10 +13,6 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { LobbyComponent } from './components/lobby/lobby.component';
 import { GameRoomComponent } from './components/game-room/game-room.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
-<<<<<<< HEAD
-// import { HttpModule } from '@angular/http';
-import { PokedexService } from './pokedex.service';
-=======
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { AngularFireModule } from '@angular/fire';
@@ -25,7 +21,6 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 import { HttpClientModule } from '@angular/common/http';
->>>>>>> master
 
 @NgModule({
   declarations: [
@@ -52,11 +47,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     FormsModule,
   ],
-<<<<<<< HEAD
-  providers: [PokedexService],
-=======
   providers: [AngularFirestore],
->>>>>>> master
   bootstrap: [AppComponent]
 })
 export class AppModule { }

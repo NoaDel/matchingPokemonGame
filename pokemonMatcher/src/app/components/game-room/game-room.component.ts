@@ -1,6 +1,7 @@
 import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
-// import { POKEMON } from '../../pokemon';a
+
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { Cards } from 'src/app/interfaces/cards';
 
 @Component({
   selector: 'app-game-room',
@@ -8,13 +9,15 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
   styleUrls: ['./game-room.component.scss']
 })
 export class GameRoomComponent implements OnInit {
-  
+  cards: Cards[]=[];
+  cardsoptions:any;
   @ViewChild('canvas', { static: true })
   canvas: ElementRef<HTMLCanvasElement>;  
   
   private ctx: CanvasRenderingContext2D;
 
   ngOnInit(): void {
+    this.cardsoptions= [{name: "test"},{name: "test"},{name: "test"},{name: "test"},{name: "test"}];
     this.ctx = this.canvas.nativeElement.getContext('2d');
     this.ctx.fillStyle = 'black';
     this.ctx.beginPath();
@@ -64,7 +67,7 @@ export class GameRoomComponent implements OnInit {
     // cardsDom
     var deck = document.getElementById('deck') as HTMLDivElement;
     for(var i; i < 19; i++){
-      deck.htmlToAdd
+      // deck.htmlToAdd
     }
   }
   
