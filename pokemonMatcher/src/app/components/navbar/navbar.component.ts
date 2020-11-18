@@ -1,3 +1,4 @@
+import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -8,6 +9,7 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class NavbarComponent implements OnInit {
   constructor(
+    public dialog: MatDialog,
     private auth: AuthService
   ) { }
 
@@ -15,9 +17,8 @@ export class NavbarComponent implements OnInit {
 
   }
 
-
   handleLogout(){
-    this.auth.logout()
+    this.auth.logout();
   }
 
 }

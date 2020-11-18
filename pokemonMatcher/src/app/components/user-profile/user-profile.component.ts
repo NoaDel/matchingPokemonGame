@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
-import { User } from '../../interfaces/user'
+import { User } from '../../interfaces/user';
 import { AngularFirestore, AngularFirestoreDocument, DocumentChangeAction, DocumentSnapshot } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
@@ -17,8 +17,8 @@ export class UserProfileComponent implements OnInit {
   gamesLost: number;
   playersWonAgainst: string;
   playersLostAgainst: string;
-  user: User
-  public getUser: AngularFirestoreDocument<User>
+  user: User;
+  public getUser: AngularFirestoreDocument<User>;
 
 
 
@@ -35,21 +35,21 @@ export class UserProfileComponent implements OnInit {
     this.auth.getUserState()
     .subscribe(fbuser => {
       this.fbuser = fbuser;
-      this.getUser = this.db.doc<User>(`Users/${this.fbuser.uid}`)
+      this.getUser = this.db.doc<User>(`Users/${this.fbuser.uid}`);
       this.getUserObservable().subscribe(user => {
-        this.user = user
+        this.user = user;
 
-        console.log(user)
+        console.log(user);
       });
 
-      console.log(fbuser)
+      console.log(fbuser);
 
     });
 
   }
 
   getUserObservable(): Observable<User> {
-    return this.getUser.valueChanges()
+    return this.getUser.valueChanges();
   }
 }
 

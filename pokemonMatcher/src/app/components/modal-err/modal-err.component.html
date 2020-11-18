@@ -9,9 +9,8 @@
 </div>
   <div mat-dialog-content>
     <p style="font-size: 16px">{{this.auth.err}}</p>
-
-  </div>
-  <div mat-dialog-actions>
-    <button mat-button mat-dialog-close>Close</button>
+    <mat-dialog-actions>
+      <button mat-button mat-dialog-close (click)="dialog.closeAll()" cdkFocusInitial>Close</button>
+    </mat-dialog-actions>
   </div>
 </body>

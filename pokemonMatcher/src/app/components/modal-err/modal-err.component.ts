@@ -1,3 +1,4 @@
+import { MatDialog } from '@angular/material/dialog';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -9,6 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class ModalErrComponent implements OnInit {
 
   constructor(
+    public dialog: MatDialog,
     public auth: AuthService
   ) { }
 
