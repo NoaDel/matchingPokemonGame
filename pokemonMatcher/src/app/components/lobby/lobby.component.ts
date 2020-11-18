@@ -105,8 +105,6 @@ selecteds: number[] = [] ;
     } else{
       if(userCheck != this.selecteds.length){
        this.selecteds.push(selected)
-      } else{
-        alert ('too many or too little users than selected')
       }
     }
 }

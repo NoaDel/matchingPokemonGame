@@ -11,7 +11,7 @@
             <option [value]="card.code" *ngFor="let card of cards.sets">{{card.name}}</option>
           </select>
         </div>
-        <p>{{setSelected}}</p>
+        <!-- <p>{{setSelected}}</p> -->
 
 
 
@@ -25,11 +25,11 @@
             </option>
           </select>
           <br>
-          selected value is {{optionselected}}
+          <!-- selected value is {{optionselected}} -->
 
         <!-- ng if single player dont show -->
         <div *ngIf="optionselected != playerSelect[0].id && optionselected != playerSelect[1].id">
-          {{playerSelect[0].id}}
+
           <p>Select opponent(s)</p>
           <div *ngFor="let user of users; let i = index;" [id]="user.uid">
             <div class="options">
