@@ -20,9 +20,6 @@ export class UserProfileComponent implements OnInit {
   user: User;
   public getUser: AngularFirestoreDocument<User>;
 
-
-
-
   fbuser: firebase.User;
   constructor(
     private auth: AuthService,

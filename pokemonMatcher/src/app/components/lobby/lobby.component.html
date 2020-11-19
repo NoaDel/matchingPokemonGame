@@ -1,19 +1,17 @@
 <app-navbar></app-navbar>
-<body>
+<body class="lobby">
   <p *ngIf="user">Logged in as: {{user.displayName}} </p>
-
+  <br>
     <div>
       <form >
 
-        <div *ngIf="cards">
+        <div style="padding-bottom: 20px" *ngIf="cards">
           <label for="cardSet">Select card set:</label>
           <select name="cardSet" [(ngModel)]="setSelected" >
             <option [value]="card.code" *ngFor="let card of cards.sets">{{card.name}}</option>
           </select>
         </div>
         <!-- <p>{{setSelected}}</p> -->
-
-
 
         <div>
           <label for="playerSelect">Select Number of players:</label>
@@ -59,3 +57,4 @@
 
 
 </body>
+<img class="sprites" alt="sprites" [src]="'../../../assets/img/pokemon-sprites-clipart.png'">

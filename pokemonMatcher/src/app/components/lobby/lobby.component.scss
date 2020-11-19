@@ -1,17 +1,22 @@
+.lobby{
+  margin-left: 20px;
+}
 
+body{
+  font-size: 16px;
+  height: 250px;
+}
+
+.sprites{
+  margin-left: 340px;
+  width: 525px;
+}
 
 //pokeball radio btn
 $bg: #ffffff;
 $red: #f15324;
 $white: white;
 $black: #333;
-
-body {
-  background: $bg;
-  font-family: Courier !important;
-  font-weight: 700;
-  color: $black;
-}
 
 .options {
   width: fit-content;
