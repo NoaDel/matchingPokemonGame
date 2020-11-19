@@ -14,11 +14,14 @@ export class GameRoomComponent implements OnInit {
 cards: Observable<Cards>
 
 
+
   constructor(
     private route: ActivatedRoute,
-    private gameService: GameService
+    private gameService: GameService,
 
-  ){ }
+  ){
+
+  }
   // @ViewChild('canvas', { static: true })
   // canvas: ElementRef<HTMLCanvasElement>;
 
@@ -27,6 +30,7 @@ cards: Observable<Cards>
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     this.cards = this.gameService.getCardSetById(id)
+
 
 
 
@@ -82,6 +86,7 @@ cards: Observable<Cards>
 
   }
 
+
   // animate(): void {}
 
 // }
@@ -91,4 +96,7 @@ cards: Observable<Cards>
 //   draw(x: number, y: number, z: number) {
 //     this.ctx.fillRect(z * x, z * y, z, z);
 //   }
+
+
+
 }

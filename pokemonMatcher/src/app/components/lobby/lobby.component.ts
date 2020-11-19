@@ -101,8 +101,8 @@ selecteds: number[] = [] ;
         this.selecteds.splice(index, 1);
       } else if(index == 0){
         this.selecteds.shift()
-
-    } else{
+      }
+     else{
       if(userCheck != this.selecteds.length){
        this.selecteds.push(selected)
       }
@@ -113,7 +113,22 @@ selecteds: number[] = [] ;
 
 //game room stuff
 goToGame(id: string): void {
-  this.router.navigate([`game-room/${id}` ]);
+  if( this.optionselected == 1 && this.optionselected == this.selecteds.length){
+    this.router.navigate([`game-room/${id}`]);
+  }
+  else if( this.optionselected != this.selecteds.length){
+    alert('too many or too little players!')
+  }
+  else if(this.optionselected == 0){
+    alert('please select number of players')
+  }
+  else{
+    this.router.navigate([`game-room/${id}` ]);
+
+  }
+
+
 }
+
 
 }
