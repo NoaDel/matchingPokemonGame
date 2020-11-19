@@ -2,12 +2,12 @@ import { Component, ElementRef, OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, DocumentChangeAction } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-import { User } from '../../interfaces/user'
-import { Observable } from 'rxjs'
-import { map } from 'rxjs/operators'
-import { GameService } from '../../services/game.service'
-import { Cards  } from '../../interfaces/cards'
-import { PlayerSelect } from '../../interfaces/player-select'
+import { User } from '../../interfaces/user';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { GameService } from '../../services/game.service';
+import { Cards  } from '../../interfaces/cards';
+import { PlayerSelect } from '../../interfaces/player-select';
 
 
 @Component({
@@ -16,20 +16,20 @@ import { PlayerSelect } from '../../interfaces/player-select'
   styleUrls: ['./lobby.component.scss']
 })
 export class LobbyComponent implements OnInit {
-  public getUsers: AngularFirestoreCollection<User>
-  users: User[] = []
-  cards: Cards
-  optionselected: number
-  playerSelect: PlayerSelect[]
+  public getUsers: AngularFirestoreCollection<User>;
+  users: User[] = [];
+  cards: Cards;
+  optionselected: number;
+  playerSelect: PlayerSelect[];
 
-  user: firebase.User
+  user: firebase.User;
   constructor(
     private db: AngularFirestore,
     private auth: AuthService,
     private router: Router,
     private game: GameService,
   ) {
-    this.getUsers = this.db.collection('Users')
+    this.getUsers = this.db.collection('Users');
   }
 
   ngOnInit(): void {
@@ -39,34 +39,34 @@ export class LobbyComponent implements OnInit {
       {id: 2, viewValue: '2 Players'},
       {id: 3, viewValue: '3 Players'},
       {id: 4, viewValue: '4 Players'}
-      ]
-      this.optionselected=0
+      ];
+    this.optionselected = 0;
 
-    this.getSets()
+    this.getSets();
     this.auth.getUserState()
     .subscribe(user => {
       this.user = user;
 
-    })
+    });
 
     this.getUsersObservable().subscribe(users => {
-      this.users = users
+      this.users = users;
 
-      console.log(users)
+      console.log(users);
     });
 
 }
 
   getSets(){
-   this.game.getCardSets().subscribe(data =>{
-     this.cards = data
-     console.log(this.cards)
+   this.game.getCardSets().subscribe(data => {
+     this.cards = data;
+     console.log(this.cards);
 
-   })
+   });
   }
 
 
-//getting all users/data
+// getting all users/data
   getUsersObservable(): Observable<User[]> {
     return this.getUsers.snapshotChanges()
       .pipe(
@@ -89,22 +89,22 @@ export class LobbyComponent implements OnInit {
 
       );
   }
-//pokemon radio btn
+  // pokemon radio btn
 selecteds: number[] = [] ;
   clickEvent(selected: number){
-    let userCheck = this.optionselected
+    let userCheck = this.optionselected;
     const index = this.selecteds.indexOf(selected);
 
-      if (index > 0 ) {
-        this.selecteds.splice(index, 1);
-      } else if(index == 0){
-        this.selecteds.shift()
+    if (index > 0 ) {
+      this.selecteds.splice(index, 1);
+    } else if (index === 0) {
+      this.selecteds.shift();
 
     } else{
-      if(userCheck != this.selecteds.length){
-       this.selecteds.push(selected)
+      if (userCheck != this.selecteds.length){
+       this.selecteds.push(selected);
       } else{
-        alert ('too many or too little users than selected')
+        alert ('too many or too little users than selected');
       }
     }
 }
