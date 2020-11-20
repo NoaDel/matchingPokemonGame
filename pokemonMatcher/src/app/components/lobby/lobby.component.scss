@@ -18,6 +18,12 @@ $red: #f15324;
 $white: white;
 $black: #333;
 
+body {
+  background: $bg;
+  font-weight: 700;
+  color: $black;
+}
+
 .options {
   width: fit-content;
   .option {

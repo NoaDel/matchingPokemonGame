@@ -129,6 +129,11 @@ user: User;
     }
 
 
+    gamePlayed(){
+
+
+    }
+
 
 
 
