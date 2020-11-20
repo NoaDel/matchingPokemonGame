@@ -1,6 +1,13 @@
 <app-navbar></app-navbar>
-<div *ngFor="let card of cards | async">
-  {{card.name}} ===
-  {{card.id}}
+<body>
+<div *ngFor="let card of cards | async; let i = index;" [id]="cards.id" [bool]="false"  >
+    <!-- <div (click)="select()">whats up bruh</div> -->
+    <img src='{{card.imageUrl}}' (click)="select()"/>
 
 </div>
+<div *ngFor="let card of cards | async; let i = index;" [id]="cards.id" [bool]="false"  >
+    <!-- <div (click)="select()">whats up bruh</div> -->
+    <img src='{{card.imageUrl}}' (click)="select()"/>
+
+</div>
+</body>

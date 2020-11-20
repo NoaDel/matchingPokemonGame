@@ -4,4 +4,5 @@ export interface Cards {
   name: string;
   card: string;
   set?: string;
+  imageUrl?: any;
 }

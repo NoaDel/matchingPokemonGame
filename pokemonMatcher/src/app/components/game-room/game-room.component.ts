@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import {Cards} from '../../interfaces/cards'
 import { GameService } from 'src/app/services/game.service';
 import { Observable } from 'rxjs';
+import { $ } from 'protractor';
 
 @Component({
   selector: 'app-game-room',
@@ -26,8 +27,10 @@ cards: Observable<Cards>
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
+    console.log(this.route.snapshot.paramMap.get('selecteds') );
     this.cards = this.gameService.getCardSetById(id)
-
+    
+    // $('base1-28').update('yellow');
 
 
 
@@ -81,6 +84,9 @@ cards: Observable<Cards>
     // var pair = [];
 
   }
+  select() { 
+    console.log("test");
+  } 
 
   // animate(): void {}
 
