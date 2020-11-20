@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
 })
 export class GameRoomComponent implements OnInit {
 cards: Observable<Cards>
+selecteds: number[] = [] ;
 
 
 
@@ -31,7 +32,7 @@ cards: Observable<Cards>
     const id = this.route.snapshot.paramMap.get('id');
     this.cards = this.gameService.getCardSetById(id)
 
-
+    console.log(this.selecteds)
 
 
 

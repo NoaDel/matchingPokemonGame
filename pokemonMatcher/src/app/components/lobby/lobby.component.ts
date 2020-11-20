@@ -29,6 +29,7 @@ export class LobbyComponent implements OnInit {
     private auth: AuthService,
     private router: Router,
     private game: GameService,
+
   ) {
     this.getUsers = this.db.collection('Users')
   }
@@ -97,6 +98,7 @@ selecteds: number[] = [] ;
     let userCheck = this.optionselected
     const index = this.selecteds.indexOf(selected);
 
+
       if (index > 0 ) {
         this.selecteds.splice(index, 1);
       } else if(index == 0){
@@ -105,8 +107,11 @@ selecteds: number[] = [] ;
      else{
       if(userCheck != this.selecteds.length){
        this.selecteds.push(selected)
+
       }
     }
+
+
 }
 
 
@@ -114,7 +119,10 @@ selecteds: number[] = [] ;
 //game room stuff
 goToGame(id: string): void {
   if( this.optionselected == 1 && this.optionselected == this.selecteds.length){
-    this.router.navigate([`game-room/${id}`]);
+
+   this.users[this.selecteds[0]]
+
+    this.router.navigate([`game-room/${id}/${this.selecteds.length}` ]);
   }
   else if( this.optionselected != this.selecteds.length){
     alert('too many or too little players!')
@@ -123,7 +131,8 @@ goToGame(id: string): void {
     alert('please select number of players')
   }
   else{
-    this.router.navigate([`game-room/${id}` ]);
+    console.log(this.selecteds)
+    this.router.navigate([`game-room/${id}/${this.selecteds.length}` ]);
 
   }
 
