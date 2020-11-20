@@ -11,8 +11,8 @@
             <option [value]="card.code" *ngFor="let card of cards.sets">{{card.name}}</option>
           </select>
         </div>
-        <!-- <p>{{setSelected}}</p> -->
-
+        <p>{{setSelected}}</p>
+        <br>
         <div>
           <label for="playerSelect">Select Number of players:</label>
 
@@ -23,7 +23,8 @@
             </option>
           </select>
           <br>
-          <!-- selected value is {{optionselected}} -->
+          <br>
+          selected value is {{optionselected}}
 
         <!-- ng if single player dont show -->
         <div *ngIf="optionselected != playerSelect[0].id && optionselected != playerSelect[1].id">
@@ -52,9 +53,8 @@
       </form>
 
     </div>
-
+    <br>
     <button (click)="goToGame(setSelected)">START GAME</button>
-
 
 </body>
 <img class="sprites" alt="sprites" [src]="'../../../assets/img/pokemon-sprites-clipart.png'">

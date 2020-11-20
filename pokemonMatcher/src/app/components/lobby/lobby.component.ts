@@ -102,17 +102,18 @@ selecteds: number[] = [] ;
       this.selecteds.shift();
 
     } else{
-      if (userCheck != this.selecteds.length){
+      if (userCheck !== this.selecteds.length){
        this.selecteds.push(selected);
       } else{
         alert ('too many or too little users than selected');
       }
     }
+
 }
 
 
 
-//game room stuff
+// game room stuff
 goToGame(id: string): void {
   this.router.navigate([`game-room/${id}` ]);
 }
