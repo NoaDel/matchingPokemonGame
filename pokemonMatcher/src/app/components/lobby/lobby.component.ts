@@ -21,6 +21,7 @@ export class LobbyComponent implements OnInit {
   cards: Cards;
   optionselected: number;
   playerSelect: PlayerSelect[];
+  setSelected: string;
 
   user: firebase.User;
   constructor(
@@ -98,14 +99,14 @@ selecteds: number[] = [] ;
     const index = this.selecteds.indexOf(selected);
 
 
-      if (index > 0 ) {
-        this.selecteds.splice(index, 1);
-      } else if(index == 0){
-        this.selecteds.shift()
-      }
+    if (index > 0 ) {
+      this.selecteds.splice(index, 1);
+    } else if (index === 0){
+      this.selecteds.shift();
+    }
      else{
-      if(userCheck != this.selecteds.length){
-       this.selecteds.push(selected)
+      if (userCheck !== this.selecteds.length){
+       this.selecteds.push(selected);
 
       }
     }
@@ -117,20 +118,20 @@ selecteds: number[] = [] ;
 
 // game room stuff
 goToGame(id: string): void {
-  if( this.optionselected == 1 && this.optionselected == this.selecteds.length){
+  if (this.optionselected == 1 && this.optionselected == this.selecteds.length){
 
-   this.users[this.selecteds[0]]
+   this.users[this.selecteds[0]];
 
-    this.router.navigate([`game-room/${id}/${this.selecteds.length}` ]);
+   this.router.navigate([`game-room/${id}/${this.selecteds.length}` ]);
   }
-  else if( this.optionselected != this.selecteds.length){
-    alert('too many or too little players!')
+  else if ( this.optionselected != this.selecteds.length){
+    alert('too many or too little players!');
   }
-  else if(this.optionselected == 0){
-    alert('please select number of players')
+  else if (this.optionselected == 0){
+    alert('please select number of players');
   }
   else{
-    console.log(this.selecteds)
+    console.log(this.selecteds);
     this.router.navigate([`game-room/${id}/${this.selecteds.length}` ]);
 
   }

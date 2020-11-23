@@ -7,7 +7,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./sign-up.component.scss']
 })
 export class SignUpComponent implements OnInit {
-error: string
+error: string;
 
   constructor(
     private firebaseAuth: AuthService
@@ -17,7 +17,7 @@ error: string
   }
 
   register(frm){
-    this.firebaseAuth.register(frm.value)
+    this.firebaseAuth.register(frm.value);
   }
 
 }
