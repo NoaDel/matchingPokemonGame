@@ -1,10 +1,10 @@
 import { Component,  OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, DocumentChangeAction } from '@angular/fire/firestore';
-import { Router } from '@angular/router';
+import { NavigationExtras, NavigationStart, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { User } from '../../interfaces/user'
 import { Observable } from 'rxjs'
-import { map } from 'rxjs/operators'
+import { map, filter } from 'rxjs/operators'
 import { GameService } from '../../services/game.service'
 import { Cards  } from '../../interfaces/cards'
 import { PlayerSelect } from '../../interfaces/player-select'
@@ -32,6 +32,8 @@ export class LobbyComponent implements OnInit {
 
   ) {
     this.getUsers = this.db.collection('Users')
+
+
   }
 
   ngOnInit(): void {
@@ -43,7 +45,7 @@ export class LobbyComponent implements OnInit {
       {id: 4, viewValue: '4 Players'}
       ]
       this.optionselected=0
-      this.setSelected= "base1"
+      this.setSelected = "base1"
 
     this.getSets()
     this.auth.getUserState()
@@ -119,10 +121,9 @@ selecteds: number[] = [] ;
 //game room stuff
 goToGame(id: string): void {
   if( this.optionselected == 1 && this.optionselected == this.selecteds.length){
-
-   this.users[this.selecteds[0]]
-
-    this.router.navigate([`game-room/${id}/${this.selecteds.length}` ]);
+    console.log(this.selecteds)
+    const navigationExtras: NavigationExtras = {state: {selecteds: this.selecteds}};
+    this.router.navigate([`game-room/${id}/${this.selecteds.length}`], navigationExtras );
   }
   else if( this.optionselected != this.selecteds.length){
     alert('too many or too little players!')
@@ -132,7 +133,7 @@ goToGame(id: string): void {
   }
   else{
     console.log(this.selecteds)
-    this.router.navigate([`game-room/${id}/${this.selecteds.length}` ]);
+    this.router.navigateByUrl(`game-room/${id}/${this.selecteds.length}`, {state: {selecteds: this.selecteds}} );
 
   }
 

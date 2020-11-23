@@ -31,12 +31,12 @@
         <div *ngIf="optionselected != playerSelect[0].id && optionselected != playerSelect[1].id">
 
           <p>Select opponent(s)</p>
-          <div *ngFor="let user of users; let i = index;" [id]="user.uid">
+          <div *ngFor="let user of users; let i = index;" [id]="user">
             <div class="options">
               <div class="option faded" id="option1">
-
-                <div [ngClass]="selecteds.indexOf(i) >= 0 ? 'pokeball selected' : 'pokeball unselected'"
-                (click)="clickEvent(i)">
+                <!-- index of user.uid if user doesnt work -->
+                <div [ngClass]="selecteds.indexOf(user) >= 0 ? 'pokeball selected' : 'pokeball unselected'"
+                (click)="clickEvent(user)">
                   <div class="upper-half"> </div>
                   <div class="lower-half"> </div>
                   <div class="base"> </div>
@@ -54,14 +54,14 @@
       <div *ngIf="optionselected == playerSelect[1].id">
 
         <p>Single Player!</p>
-        <div *ngFor="let uzer of users; let i = index;" [id]="uzer.uid">
+        <div *ngFor="let uzer of users; let i = index;" [id]="uzer">
 
           <div *ngIf="uzer.uid == user.uid">
           <div class="options">
             <div class="option faded" id="option1">
 
-              <div [ngClass]="selecteds.indexOf(i) >= 0 ? 'pokeball selected' : 'pokeball unselected'"
-              (click)="clickEvent(i)">
+              <div [ngClass]="selecteds.indexOf(uzer) >= 0 ? 'pokeball selected' : 'pokeball unselected'"
+              (click)="clickEvent(uzer)">
                 <div class="upper-half"> </div>
                 <div class="lower-half"> </div>
                 <div class="base"> </div>
@@ -75,12 +75,12 @@
         </div>
       </div>
     </div>
-
+    <button (click)="goToGame(setSelected)">START GAME</button>
       </form>
 
     </div>
 
-    <button (click)="goToGame(setSelected)">START GAME</button>
+
 
 
 </body>

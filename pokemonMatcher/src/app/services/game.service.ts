@@ -3,15 +3,21 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Cards } from '../interfaces/cards';
 import {map } from 'rxjs/operators'
+import { User } from '../interfaces/user';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class GameService {
+  user: User;
+
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private db: AngularFirestore,
+
   ) { }
 
 
@@ -25,8 +31,5 @@ export class GameService {
     return this.http.get<Cards>(`https://api.pokemontcg.io/v1/cards?setCode=${id}`)
     .pipe(map(data => data['cards']));
   }
-
-
-
 
 }

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { auth } from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore, AngularFirestoreDocument, AngularFirestoreModule, DocumentChangeAction } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import {MatDialog} from '@angular/material/dialog';
 import {ModalErrComponent} from '../components/modal-err/modal-err.component';
 import { User } from '../interfaces/user';
@@ -14,7 +14,6 @@ import { User } from '../interfaces/user';
 export class AuthService {
 newUser: any;
 err: '';
-user: User;
 
   constructor(
     private firebaseAuth: AngularFireAuth,
@@ -129,10 +128,6 @@ user: User;
     }
 
 
-    gamePlayed(){
-
-
-    }
 
 
 

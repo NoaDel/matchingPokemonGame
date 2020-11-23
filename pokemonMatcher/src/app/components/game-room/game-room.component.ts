@@ -1,9 +1,13 @@
 import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 // import { POKEMON } from '../../pokemon';a
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import {Cards} from '../../interfaces/cards'
 import { GameService } from 'src/app/services/game.service';
 import { Observable } from 'rxjs';
+import { filter, map, tap } from 'rxjs/operators'
+import { User } from '../../interfaces/user';
+import { AuthService } from 'src/app/services/auth.service';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-game-room',
@@ -12,16 +16,25 @@ import { Observable } from 'rxjs';
 })
 export class GameRoomComponent implements OnInit {
 cards: Observable<Cards>
-selecteds: number[] = [] ;
+selecteds: Array<User>
+user: User;
+fbuser: firebase.User;
+public getUser: AngularFirestoreDocument<User>;
+
+
 
 
 
   constructor(
     private route: ActivatedRoute,
     private gameService: GameService,
+    private router: Router,
+    private auth: AuthService,
+    private db: AngularFirestore,
+
+
 
   ){
-
   }
   // @ViewChild('canvas', { static: true })
   // canvas: ElementRef<HTMLCanvasElement>;
@@ -29,12 +42,86 @@ selecteds: number[] = [] ;
   // private ctx: CanvasRenderingContext2D;
 
   ngOnInit(): void {
+    if(window.history.state.selecteds){
+      this.selecteds = window.history.state.selecteds
+      console.log(this.selecteds)
+    } else {
+      this.router.navigateByUrl(`lobby`)
+    }
+
+
     const id = this.route.snapshot.paramMap.get('id');
+    const players = this.route.snapshot.paramMap.get('selecteds');
     this.cards = this.gameService.getCardSetById(id)
 
-    console.log(this.selecteds)
 
+    this.auth.getUserState()
+    .subscribe(fbuser => {
+      this.fbuser = fbuser;
+      this.getUser = this.db.doc<User>(`Users/${this.fbuser.uid}`);
+      this.getUserObservable().subscribe(user => {
+        this.user = user;
+        console.log(user);
+      });
+      console.log(fbuser);
+    });
 
+  }
+
+  getUserObservable(): Observable<User> {
+    return this.getUser.valueChanges();
+  }
+
+  gamePlayed(userCredentials){
+    this.user = userCredentials
+
+    console.log(this.user)
+    const userRef: AngularFirestoreDocument<User> = this.db.collection('Users').doc(userCredentials.uid);
+
+    let gameWon = true
+
+    if(gameWon == true){
+      this.selecteds.forEach(player =>{
+        userCredentials.wonTo.push(player.displayName)
+
+      })
+
+      userRef.get().subscribe(doc => {
+        if (doc.exists){
+          userRef.update({
+            uid: userCredentials.uid,
+            email: userCredentials.email,
+            displayName: userCredentials.displayName,
+            totalBattle: userCredentials.totalBattle + 1,
+            wins: userCredentials.wins + 1,
+            losses: userCredentials.losses,
+            wonTo: userCredentials.wonTo,
+            lostTo: userCredentials.lostTo
+          });
+        }
+
+      });
+    } else if(gameWon == false){
+      this.selecteds.forEach(player => {
+        userCredentials.lostTo.push(player.displayName)
+      });
+      userRef.get().subscribe(doc => {
+        if (doc.exists){
+          userRef.update({
+            uid: userCredentials.uid,
+            email: userCredentials.email,
+            displayName: userCredentials.displayName,
+            totalBattle: userCredentials.totalBattle + 1,
+            wins: userCredentials.wins,
+            losses: userCredentials.losses + 1,
+            wonTo: userCredentials.wonTo,
+            lostTo: userCredentials.lostTo
+          });
+        }
+      });
+
+    }
+  }
 
     // this.ctx = this.canvas.nativeElement.getContext('2d');
     // this.ctx.fillStyle = 'black';
@@ -85,7 +172,7 @@ selecteds: number[] = [] ;
     // cardsDom
     // var pair = [];
 
-  }
+
 
 
   // animate(): void {}
@@ -97,6 +184,8 @@ selecteds: number[] = [] ;
 //   draw(x: number, y: number, z: number) {
 //     this.ctx.fillRect(z * x, z * y, z, z);
 //   }
+
+
 
 
 
