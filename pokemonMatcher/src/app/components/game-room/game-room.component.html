@@ -1,6 +1,7 @@
 <app-navbar></app-navbar>
-<div *ngFor="let card of cards | async">
-  {{card.name}} ===
-  {{card.id}}
+<div *ngFor="let card of cards | async"  >
+  <div>
+    <img src={{card.imageUrl}}>
+  </div>
 
 </div>
