@@ -23,6 +23,7 @@
     "@angular/platform-browser-dynamic": "~10.2.0",
     "@angular/router": "~10.2.0",
     "firebase": "^7.23.0",
+    "js-to-ts-converter": "^0.18.1",
     "pokemon-font": "^1.8.1",
     "pokemon-tcg-sdk-typescript": "^1.2.3",
     "rxjs": "~6.6.0",
