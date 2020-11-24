@@ -1,21 +1,19 @@
 <app-navbar></app-navbar>
-<body class="lobby">
+<body>
   <p *ngIf="user">Logged in as: {{user.displayName}} </p>
   <br>
     <div>
       <form >
-
-        <div style="padding-bottom: 20px" *ngIf="cards">
+        <div *ngIf="cards">
           <label for="cardSet">Select card set:</label>
           <select name="cardSet" [(ngModel)]="setSelected" >
             <option [value]="card.code" *ngFor="let card of cards.sets">{{card.name}}</option>
           </select>
         </div>
+        <br>
         <!-- <p>{{setSelected}}</p> -->
-
         <div>
           <label for="playerSelect">Select Number of players:</label>
-
           <select id="playerSelect" name="playerSelect"
           [(ngModel)]="optionselected">
             <option *ngFor="let player of playerSelect" [value]="player.id">
@@ -24,15 +22,13 @@
           </select>
           <br>
           <!-- selected value is {{optionselected}} -->
-
         <!-- ng if single player dont show -->
+        <br>
         <div *ngIf="optionselected != playerSelect[0].id && optionselected != playerSelect[1].id">
-
           <p>Select opponent(s)</p>
           <div *ngFor="let user of users; let i = index;" [id]="user.uid">
             <div class="options">
               <div class="option faded" id="option1">
-
                 <div [ngClass]="selecteds.indexOf(i) >= 0 ? 'pokeball selected' : 'pokeball unselected'"
                 (click)="clickEvent(i)">
                   <div class="upper-half"> </div>
@@ -48,16 +44,12 @@
           </div>
         </div>
       </div>
-
       <div *ngIf="optionselected == playerSelect[1].id">
-
         <p>Single Player!</p>
         <div *ngFor="let uzer of users; let i = index;" [id]="uzer.uid">
-
           <div *ngIf="uzer.uid == user.uid">
           <div class="options">
             <div class="option faded" id="option1">
-
               <div [ngClass]="selecteds.indexOf(i) >= 0 ? 'pokeball selected' : 'pokeball unselected'"
               (click)="clickEvent(i)">
                 <div class="upper-half"> </div>
@@ -73,13 +65,12 @@
         </div>
       </div>
     </div>
-
       </form>
-
     </div>
-
+    <br>
     <button (click)="goToGame(setSelected)">START GAME</button>
-
-
 </body>
-<img class="sprites" alt="sprites" [src]="'../../../assets/img/pokemon-sprites-clipart.png'">
+<div  class="sprites">
+  <img class="sprites" alt="sprites" [src]="'../../../assets/img/pokemon-sprites-clipart.png'">
+</div>
+

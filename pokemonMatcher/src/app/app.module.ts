@@ -20,6 +20,8 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 import { HttpClientModule } from '@angular/common/http';
+import { ErrorMessageComponent } from './components/error-message/error-message.component';
+
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { HttpClientModule } from '@angular/common/http';
     GameRoomComponent,
     SignUpComponent,
     NavbarComponent,
+    ErrorMessageComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,7 +49,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
 
   ],
-  providers: [AngularFirestore],
+  providers: [AngularFirestore, LobbyComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

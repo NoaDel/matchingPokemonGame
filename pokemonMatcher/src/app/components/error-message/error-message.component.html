@@ -1,0 +1,18 @@
+<body>
+  <div class="modalSize">
+    <p>Uh oh! You have too many or too few <br> players!
+    </p>
+    <br>
+ </div>
+ <div class='errImgSize'>
+   <img class="professorErr" alt="professor Error" [src]="'../../../assets/img/professorOak.png'">
+ </div>
+   <div mat-dialog-content>
+     <p style="font-size: 16px">{{this.message}}</p>
+     <div mat-dialog-actions>
+       <button mat-button mat-dialog-close (click)="dialog.closeAll()" cdkFocusInitial>Close</button>
+     </div>
+
+   </div>
+
+ </body>
