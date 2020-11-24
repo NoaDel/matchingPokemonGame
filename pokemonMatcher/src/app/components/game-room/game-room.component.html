@@ -1,10 +1,12 @@
 <app-navbar></app-navbar>
-<button (click)="gamePlayed(this.user)">TESTESTETEST</button>
-
-<div *ngFor="let player of selecteds" [id]="player.uid">{{player.displayName}}</div>
-
-<div *ngFor="let card of cards | async"  >
-  <div>
-    <img src={{card.imageUrl}}>
-  </div>
-</div>
+<body>
+    <div *ngFor="let card of cards | async; let i = index;" [id]="cards.id" [bool]="false" (click)="flipCard($event)"  class="memory" data-framework="{{card.name}}">
+        
+            <img src='{{card.imageUrl}}' class="front-face"/>
+            <img src='../../../assets/img/pokemonback.png' id="pokeBack" class="back-face"/>
+    </div>
+    <div *ngFor="let card of cards | async; let i = index;" [id]="cards.id" [bool]="false" (click)="flipCard($event)"  class="memory" data-framework="{{card.name}}">
+            <img src='{{card.imageUrl}}' (click)='flipCard($event)' class="front-face"/>
+            <img src='../../../assets/img/pokemonback.png' id="pokeBack" (click)='flipCard($event)' class="back-face"/>
+    </div>
+</body>

@@ -1,0 +1,54 @@
+body{
+    display: flex;
+    flex-wrap: wrap;
+    perspective: 1000px;
+}
+.memory{
+    position: relative;
+    width: 158.797px;
+    height: 217.219px;
+    transform: scale(1);
+    transform-style: preserve-3d;
+    transition: transform .2s;
+}
+p{
+    width: 155.797px;
+    height: 214.219px;
+    padding: 3px;
+    position: absolute;
+    display: block;
+}
+.memory:active{
+    transform: scale(0.97);
+    transition: transform .2s;
+    transform-style: preserve-3d;
+}
+.memory.flip{
+    transform: rotateY(180deg);
+
+}
+.back-face{
+    backface-visibility: hidden;
+    transform: rotateY(0deg);
+    transition: transform .5s;
+}
+.front-face{
+    transform: rotateY(180deg);
+    backface-visibility: hidden;
+}
+// .memory:flip{
+//     transform: rotateY(180deg);
+// }
+.selected{
+    transform: rotateY(180deg);
+}
+img{
+    width: 155.797px;
+    height: 214.219px;
+    padding: 3px;
+    position: absolute;
+    // animation: leen 5s infinite;
+}
+#pokeBack{
+    overflow: hidden;
+}

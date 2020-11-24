@@ -1,13 +1,18 @@
-import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit, Pipe } from '@angular/core';
 // import { POKEMON } from '../../pokemon';a
 import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import {Cards} from '../../interfaces/cards'
 import { GameService } from 'src/app/services/game.service';
 import { Observable } from 'rxjs';
+<<<<<<< HEAD
 import { filter, map, tap } from 'rxjs/operators'
 import { User } from '../../interfaces/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+=======
+import { $ } from 'protractor';
+import { createReadStream } from 'fs';
+>>>>>>> Noah
 
 @Component({
   selector: 'app-game-room',
@@ -51,6 +56,7 @@ public getUser: AngularFirestoreDocument<User>;
 
 
     const id = this.route.snapshot.paramMap.get('id');
+<<<<<<< HEAD
     const players = this.route.snapshot.paramMap.get('selecteds');
     this.cards = this.gameService.getCardSetById(id)
 
@@ -145,70 +151,87 @@ public getUser: AngularFirestoreDocument<User>;
 
     }
   }
+=======
+    console.log(this.route.snapshot.paramMap.get('selecteds') );
+    this.cards = this.gameService.getCardSetById(id);
 
-    // this.ctx = this.canvas.nativeElement.getContext('2d');
-    // this.ctx.fillStyle = 'black';
-    // this.ctx.beginPath();
-    // this.ctx.moveTo(587.5, 277.5);
-    // this.ctx.lineTo(590, 277.5);
-    // this.ctx.lineTo(590, 240);
-    // this.ctx.lineTo(585, 240);
-    // this.ctx.lineTo(585, 275);
-    // this.ctx.lineTo(385, 275);
-    // this.ctx.lineTo(385, 260);
-    // this.ctx.lineTo(375, 260);
-    // this.ctx.lineTo(375, 265);
-    // this.ctx.lineTo(365, 265);
-    // this.ctx.lineTo(365, 270);
-    // this.ctx.lineTo(355, 270);
-    // this.ctx.lineTo(355, 275);
-    // this.ctx.lineTo(345, 275);
-    // this.ctx.lineTo(345, 280);
-    // this.ctx.lineTo(587.5, 280);
-    // this.ctx.closePath();
-    // this.ctx.fill();
-    // this.ctx.beginPath();
-    // this.ctx.moveTo(287.5, 177.5);
-    // this.ctx.lineTo(290, 177.5);
-    // this.ctx.lineTo(290, 140);
-    // this.ctx.lineTo(285, 140);
-    // this.ctx.lineTo(285, 175);
-    // this.ctx.lineTo(85, 175);
-    // this.ctx.lineTo(85, 160);
-    // this.ctx.lineTo(75, 160);
-    // this.ctx.lineTo(75, 165);
-    // this.ctx.lineTo(65, 165);
-    // this.ctx.lineTo(65, 170);
-    // this.ctx.lineTo(55, 170);
-    // this.ctx.lineTo(55, 175);
-    // this.ctx.lineTo(45, 175);
-    // this.ctx.lineTo(45, 180);
-    // this.ctx.lineTo(287.5, 180);
-    // this.ctx.font = "24px pokemon-font"
-    // this.ctx.fillText("testing", 50, 50);
-    // this.ctx.closePath();
-    // this.ctx.fill();
-    // var matcher = 0;
+    console.log(this.selecteds)
+  }
+  select(){
+    console.log("test");
+  }
+  carding: any = document.querySelectorAll('.memory');
+  clicked(event){
+    event.target.parentNode.classList.toggle('flip');
+    console.log(event.target.classList);
+    console.log("test");
+  }
 
-    // var cards = ['flower', 'wheat', 'tower', 'wheat', 'power', 'power', 'flower'];
-    // var cardsDom = document.getElementsByClassName('cards') as HTMLUListElement;
-    // cardsDom
-    // var pair = [];
+hasFlippedCard: boolean = false;
+lockBoard: boolean = false;
+firstCard: any;
+secondCard: any;
+
+flipCard(event) {
+  if (this.lockBoard) {
+    return;
+  }
+  if (event.target.parentNode === this.firstCard) {
+    return;
+  }
+
+  event.target.parentNode.classList.toggle('flip');
+>>>>>>> Noah
 
 
+<<<<<<< HEAD
+
+=======
+  if (!this.hasFlippedCard) {
+    this.hasFlippedCard = true;
+    this.firstCard = event.target.parentNode;
+
+    return;
+  }
+>>>>>>> Noah
+
+  this.secondCard = event.target.parentNode;
+  this.checkForMatch();
+}
+
+checkForMatch() {
+  let isMatch = this.firstCard.parentNode.dataset.framework === this.secondCard.parentNode.dataset.framework;
+
+  isMatch ? this.disableCards() : this.unflipCards();
+}
+
+disableCards() {
+  // this.firstCard.removeEventListener('click', this.flipCard);
+  // this.secondCard.removeEventListener('click', this.flipCard);
+
+  this.resetBoard();
+}
+
+unflipCards() {
+  this.lockBoard = true;
+
+  setTimeout(() => {
+    this.firstCard.parentNode.classList.remove('flip');
+    this.secondCard.parentNode.classList.remove('flip');
+
+    this.resetBoard();
+  }, 15);
+}
+
+<<<<<<< HEAD
 
 
-  // animate(): void {}
-
-// }
-// export class Square {
-//   constructor(private ctx: CanvasRenderingContext2D) {}
-
-//   draw(x: number, y: number, z: number) {
-//     this.ctx.fillRect(z * x, z * y, z, z);
-//   }
-
-
+=======
+resetBoard() {
+  [this.hasFlippedCard, this.lockBoard] = [false, false];
+  [this.firstCard, this.secondCard] = [null, null];
+>>>>>>> Noah
+}
 
 
 

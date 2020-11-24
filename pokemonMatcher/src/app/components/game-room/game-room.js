@@ -1,104 +1,59 @@
-let card = document.getElementsByClassName("card");
-let cards = [...card];
-console.log("test");
-for (var i = 0; i < cards.length; i++){
-   cards[i].addEventListener("click", displayCard);
-};
+const carding = document.querySelectorAll('.memory-card');
 
-var displayCard = function (){
-    this.classList.toggle("open");
-    this.classList.toggle("show");
-    this.classList.toggle("disabled");
- }
+let hasFlippedCard = false;
+let lockBoard = false;
+let firstCard, secondCard;
 
- function shuffle(array){
-     var current = array.length, temporaryValue, random;
-     while (currentIndex !== 0){
-        random = Math.floor(Math.random() * current);
-        current -= 1;
-        temporaryValue = array[current];
-        array[current] = array[random];
-        array[random] = temporaryValue;
-     }
-     return array;
- }
- const deck = document.querySelector(".deck");
- console.log(deck);
-function startGame(){
-   var shuffledCards = shuffle(cards);
-   for (var i= 0; i < shuffledCards.length; i++){
-      [].forEach.call(shuffledCards, function(item){
-         deck.appendChild(item);
-      });
-   }
+flipCard() {
+  if (lockBoard) return;
+  if (this === firstCard) return;
+
+  this.classList.add('flip');
+
+  if (!hasFlippedCard) {
+    hasFlippedCard = true;
+    firstCard = this;
+
+    return;
+  }
+
+  secondCard = this;
+  checkForMatch();
 }
 
-window.onload = startGame();
+checkForMatch() {
+  let isMatch = firstCard.dataset.framework === secondCard.dataset.framework;
 
-function cardOpen() {
-    openedCards.push(this);
-    var len = openedCards.length;
-    if(len === 2){
-        moveCounter();
-        if(openedCards[0].type === openedCards[1].type){
-            matched();
-        } else {
-            unmatched();
-        }
-    }
-};
-
-function matched(){
-    openedCards[0].classList.add("match");
-    openedCards[1].classList.add("match");
-    openedCards[0].classList.remove("show", "open");
-    openedCards[1].classList.remove("show", "open");
-    openedCards = [];
+  isMatch ? disableCards() : unflipCards();
 }
 
-function unmatched(){
-    openedCards[0].classList.add("unmatched");
-    openedCards[1].classList.add("unmatched");
-    disable();
-    setTimeout(function(){
-        openedCards[0].classList.remove("show", "open", "unmatched");
-        openedCards[1].classList.remove("show", "open", "unmatched");
-        enable();
-        openedCards = [];
-    },1100);
+disableCards() {
+  firstCard.removeEventListener('click', flipCard);
+  secondCard.removeEventListener('click', flipCard);
+
+  resetBoard();
 }
 
-function disable(){
-    Array.prototype.filter.call(cards, function(card){
-        card.classList.add('disabled');
-    });
+flipCards() {
+  lockBoard = true;
+
+  setTimeout(() => {
+    firstCard.classList.remove('flip');
+    secondCard.classList.remove('flip');
+
+    resetBoard();
+  }, 1500);
 }
 
-function enable(){
-    Array.prototype.filter.call(cards, function(card){
-        card.classList.remove('disabled');
-        for(var i = 0; i < matchedCard.length; i++){
-            matchedCard[i].classList.add("disabled");
-        }
-    });
+resetBoard() {
+  [hasFlippedCard, lockBoard] = [false, false];
+  [firstCard, secondCard] = [null, null];
 }
-function moveCounter(){
-    moves++;
-    counter.innerHTML = moves;
 
-// setting rates based on moves
-    if (moves > 8 && moves < 12){
-        for( i= 0; i < 3; i++){
-            if(i > 1){
-                stars[i].style.visibility = "collapse";
-            }
-        }
-    }
-    else if (moves > 13){
-        for( i= 0; i < 3; i++){
-            if(i > 0){
-                stars[i].style.visibility = "collapse";
-            }
-        }
-    }
-}
+(shuffle() {
+  carding.forEach(card => {
+    let randomPos = Math.floor(Math.random() * 12);
+  });
+})();
+
+carding.forEach(card => card.addEventListener('click', flipCard));
