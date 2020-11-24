@@ -127,13 +127,6 @@ errorMessage(message) {
 
 // game room stuff
 goToGame(id: string): void {
-<<<<<<< HEAD
-  if (this.optionselected == 1 && this.optionselected == this.selecteds.length){
-
-   this.users[this.selecteds[0]];
-
-   this.router.navigate([`game-room/${id}/${this.selecteds.length}` ]);
-=======
   if( this.optionselected == 1 && this.optionselected == this.selecteds.length){
     console.log(this.selecteds)
     const navigationExtras: NavigationExtras = {state: {selecteds: this.selecteds}};
@@ -149,13 +142,8 @@ goToGame(id: string): void {
     this.errorMessage(this.message);
   }
   else{
-<<<<<<< HEAD
-    console.log(this.selecteds);
-    this.router.navigate([`game-room/${id}/${this.selecteds.length}` ]);
-=======
     console.log(this.selecteds)
     this.router.navigateByUrl(`game-room/${id}/${this.selecteds.length}`, {state: {selecteds: this.selecteds}} );
->>>>>>> Rowan
 
   }
 
