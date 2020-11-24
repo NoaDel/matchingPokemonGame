@@ -146,11 +146,6 @@ public getUser: AngularFirestoreDocument<User>;
       });
 
     }
-  
-    console.log(this.route.snapshot.paramMap.get('selecteds') );
-    this.cards = this.gameService.getCardSetById(id);
-
-    console.log(this.selecteds)
   }
   select(){
     console.log("test");
