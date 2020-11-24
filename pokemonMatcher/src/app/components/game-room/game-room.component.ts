@@ -4,15 +4,12 @@ import { ActivatedRoute, NavigationStart, Router } from '@angular/router';
 import {Cards} from '../../interfaces/cards'
 import { GameService } from 'src/app/services/game.service';
 import { Observable } from 'rxjs';
-<<<<<<< HEAD
 import { filter, map, tap } from 'rxjs/operators'
 import { User } from '../../interfaces/user';
 import { AuthService } from 'src/app/services/auth.service';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
-=======
 import { $ } from 'protractor';
 import { createReadStream } from 'fs';
->>>>>>> Noah
 
 @Component({
   selector: 'app-game-room',
@@ -56,7 +53,6 @@ public getUser: AngularFirestoreDocument<User>;
 
 
     const id = this.route.snapshot.paramMap.get('id');
-<<<<<<< HEAD
     const players = this.route.snapshot.paramMap.get('selecteds');
     this.cards = this.gameService.getCardSetById(id)
 
@@ -150,8 +146,7 @@ public getUser: AngularFirestoreDocument<User>;
       });
 
     }
-  }
-=======
+  
     console.log(this.route.snapshot.paramMap.get('selecteds') );
     this.cards = this.gameService.getCardSetById(id);
 
@@ -181,19 +176,14 @@ flipCard(event) {
   }
 
   event.target.parentNode.classList.toggle('flip');
->>>>>>> Noah
 
 
-<<<<<<< HEAD
-
-=======
   if (!this.hasFlippedCard) {
     this.hasFlippedCard = true;
     this.firstCard = event.target.parentNode;
 
     return;
   }
->>>>>>> Noah
 
   this.secondCard = event.target.parentNode;
   this.checkForMatch();
@@ -223,14 +213,9 @@ unflipCards() {
   }, 15);
 }
 
-<<<<<<< HEAD
-
-
-=======
 resetBoard() {
   [this.hasFlippedCard, this.lockBoard] = [false, false];
   [this.firstCard, this.secondCard] = [null, null];
->>>>>>> Noah
 }
 
 
