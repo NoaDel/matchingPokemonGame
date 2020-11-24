@@ -1,7 +1,10 @@
 <app-navbar></app-navbar>
+<button (click)="gamePlayed(this.user)">TESTESTETEST</button>
+
+<div *ngFor="let player of selecteds" [id]="player.uid">{{player.displayName}}</div>
+
 <div *ngFor="let card of cards | async"  >
   <div>
     <img src={{card.imageUrl}}>
   </div>
-
 </div>

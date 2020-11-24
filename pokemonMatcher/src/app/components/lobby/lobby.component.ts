@@ -2,15 +2,14 @@ import { MatDialog } from '@angular/material/dialog';
 import { ErrorMessageComponent } from './../error-message/error-message.component';
 import { Component,  OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, DocumentChangeAction } from '@angular/fire/firestore';
-import { Router } from '@angular/router';
+import { NavigationExtras, NavigationStart, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-import { User } from '../../interfaces/user';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { GameService } from '../../services/game.service';
-import { Cards  } from '../../interfaces/cards';
-import { PlayerSelect } from '../../interfaces/player-select';
-import { style } from '@angular/animations';
+import { User } from '../../interfaces/user'
+import { Observable } from 'rxjs'
+import { map, filter } from 'rxjs/operators'
+import { GameService } from '../../services/game.service'
+import { Cards  } from '../../interfaces/cards'
+import { PlayerSelect } from '../../interfaces/player-select'
 
 
 @Component({
@@ -36,7 +35,9 @@ export class LobbyComponent implements OnInit {
     public dialog: MatDialog,
 
   ) {
-    this.getUsers = this.db.collection('Users');
+    this.getUsers = this.db.collection('Users')
+
+
   }
 
   ngOnInit(): void {
@@ -46,9 +47,9 @@ export class LobbyComponent implements OnInit {
       {id: 2, viewValue: '2 Players'},
       {id: 3, viewValue: '3 Players'},
       {id: 4, viewValue: '4 Players'}
-      ];
-    this.optionselected = 0;
-    this.setSelected = 'base1';
+      ]
+      this.optionselected=0
+      this.setSelected = "base1"
 
     this.getSets();
     this.auth.getUserState()
@@ -126,11 +127,18 @@ errorMessage(message) {
 
 // game room stuff
 goToGame(id: string): void {
+<<<<<<< HEAD
   if (this.optionselected == 1 && this.optionselected == this.selecteds.length){
 
    this.users[this.selecteds[0]];
 
    this.router.navigate([`game-room/${id}/${this.selecteds.length}` ]);
+=======
+  if( this.optionselected == 1 && this.optionselected == this.selecteds.length){
+    console.log(this.selecteds)
+    const navigationExtras: NavigationExtras = {state: {selecteds: this.selecteds}};
+    this.router.navigate([`game-room/${id}/${this.selecteds.length}`], navigationExtras );
+>>>>>>> Rowan
   }
   else if ( this.optionselected != this.selecteds.length){
     this.message = 'Too many or too little players';
@@ -141,8 +149,13 @@ goToGame(id: string): void {
     this.errorMessage(this.message);
   }
   else{
+<<<<<<< HEAD
     console.log(this.selecteds);
     this.router.navigate([`game-room/${id}/${this.selecteds.length}` ]);
+=======
+    console.log(this.selecteds)
+    this.router.navigateByUrl(`game-room/${id}/${this.selecteds.length}`, {state: {selecteds: this.selecteds}} );
+>>>>>>> Rowan
 
   }
 
