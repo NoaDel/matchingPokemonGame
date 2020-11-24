@@ -131,7 +131,6 @@ goToGame(id: string): void {
     console.log(this.selecteds)
     const navigationExtras: NavigationExtras = {state: {selecteds: this.selecteds}};
     this.router.navigate([`game-room/${id}/${this.selecteds.length}`], navigationExtras );
->>>>>>> Rowan
   }
   else if ( this.optionselected != this.selecteds.length){
     this.message = 'Too many or too little players';
