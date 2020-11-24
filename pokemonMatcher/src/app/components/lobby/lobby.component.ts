@@ -1,3 +1,5 @@
+import { MatDialog } from '@angular/material/dialog';
+import { ErrorMessageComponent } from './../error-message/error-message.component';
 import { Component,  OnInit } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, DocumentChangeAction } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
@@ -8,6 +10,7 @@ import { map } from 'rxjs/operators';
 import { GameService } from '../../services/game.service';
 import { Cards  } from '../../interfaces/cards';
 import { PlayerSelect } from '../../interfaces/player-select';
+import { style } from '@angular/animations';
 
 
 @Component({
@@ -22,6 +25,7 @@ export class LobbyComponent implements OnInit {
   optionselected: number;
   playerSelect: PlayerSelect[];
   setSelected: string;
+  error: string;
 
   user: firebase.User;
   constructor(
@@ -29,6 +33,7 @@ export class LobbyComponent implements OnInit {
     private auth: AuthService,
     private router: Router,
     private game: GameService,
+    public dialog: MatDialog,
 
   ) {
     this.getUsers = this.db.collection('Users');
@@ -113,8 +118,12 @@ selecteds: number[] = [] ;
 
 
 }
+message: string;
 
-
+errorMessage(message) {
+  this.dialog.open(ErrorMessageComponent, message);
+  console.log(message);
+}
 
 // game room stuff
 goToGame(id: string): void {
@@ -125,10 +134,12 @@ goToGame(id: string): void {
    this.router.navigate([`game-room/${id}/${this.selecteds.length}` ]);
   }
   else if ( this.optionselected != this.selecteds.length){
-    alert('too many or too little players!');
+    this.message = 'Too many or too little players';
+    this.errorMessage(this.message);
   }
   else if (this.optionselected == 0){
-    alert('please select number of players');
+    this.message = 'Please select a number of players';
+    this.errorMessage(this.message);
   }
   else{
     console.log(this.selecteds);
