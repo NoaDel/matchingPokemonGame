@@ -75,14 +75,37 @@ public getUser: AngularFirestoreDocument<User>;
   gamePlayed(userCredentials){
     this.user = userCredentials
 
+
     console.log(this.user)
     const userRef: AngularFirestoreDocument<User> = this.db.collection('Users').doc(userCredentials.uid);
+
+
+
 
     let gameWon = true
 
     if(gameWon == true){
+
       this.selecteds.forEach(player =>{
         userCredentials.wonTo.push(player.displayName)
+
+        const playersRef: AngularFirestoreDocument<User> = this.db.collection('Users').doc(player.uid);
+        // playersRef.get().subscribe(doc => {
+
+        //   if (doc.exists){
+        //     playersRef.update({
+        //       uid: player.uid,
+        //       email: player.email,
+        //       displayName: player.displayName,
+        //       totalBattle: player.totalBattle + 1,
+        //       wins: player.wins + 1,
+        //       losses: player.losses,
+        //       wonTo: player.wonTo,
+        //       lostTo: player.lostTo
+        //     });
+        //   }
+
+        // });
 
       })
 
