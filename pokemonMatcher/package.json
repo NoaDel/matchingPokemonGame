@@ -1,6 +1,7 @@
 {
   "name": "pokemon-matcher",
   "version": "0.0.0",
+  "homepage": "https://noadel.github.io/matchingPokemonGame/",
   "scripts": {
     "ng": "ng",
     "predeploy": "npm run build",
@@ -11,7 +12,6 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
-  "homepage": "https://github.com/NoaDel/matchingPokemonGame/pokemonMatcher",
   "private": true,
   "dependencies": {
     "@angular/animations": "~10.2.0",
