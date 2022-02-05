@@ -3,12 +3,15 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
+  "homepage": "https://github.com/NoaDel/matchingPokemonGame",
   "private": true,
   "dependencies": {
     "@angular/animations": "~10.2.0",
