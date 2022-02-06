@@ -3,8 +3,9 @@
     "",
     "\\pokemonMatcher",
     "\\pokemonMatcher\\e2e",
-    "\\pokemonMatcher\\e2e\\src"
+    "\\pokemonMatcher\\e2e\\src",
+    "\\pokemonMatcher\\src"
   ],
-  "SelectedNode": "\\pokemonMatcher\\package.json",
+  "SelectedNode": "\\pokemonMatcher\\src\\main.ts",
   "PreviewInSolutionExplorer": false
 }
