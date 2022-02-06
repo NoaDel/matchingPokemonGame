@@ -3,10 +3,10 @@
   "version": "0.0.0",
   "homepage": "https://noadel.github.io/matchingPokemonGame/",
   "scripts": {
+    "start": "ng serve",
     "ng": "ng",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",

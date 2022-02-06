@@ -1,7 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\pokemonMatcher"
+    "\\pokemonMatcher",
+    "\\pokemonMatcher\\e2e",
+    "\\pokemonMatcher\\e2e\\src"
   ],
+  "SelectedNode": "\\pokemonMatcher\\package.json",
   "PreviewInSolutionExplorer": false
 }
