@@ -2,7 +2,7 @@
   "name": "pokemon-matcher",
   "version": "0.0.0",
   "homepage": "https://noadel.github.io/matchingPokemonGame/",
-  "main": "e2e/src/protractor.conf.js",
+  "main": "pokemonMatcher/e2e/src/protractor.conf.js",
   "scripts": {
     "start": "ng serve",
     "ng": "ng",
