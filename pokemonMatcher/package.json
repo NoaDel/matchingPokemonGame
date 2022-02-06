@@ -2,7 +2,7 @@
   "name": "pokemon-matcher",
   "version": "0.0.0",
   "homepage": "https://noadel.github.io/matchingPokemonGame/",
-  "main": "src/main.ts",
+  "main": "lib/functions/src/index.js",
   "scripts": {
     "start": "ng serve",
     "ng": "ng",
